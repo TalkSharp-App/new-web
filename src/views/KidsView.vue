@@ -1,16 +1,14 @@
 <script lang="ts" setup>
 import PageLayout from '@/components/PageLayout.vue';
-
+import KidsHero from './kids/KidsHero.vue';
+import KidsSolution from './kids/KidsSolution.vue';
 
 </script>
 <template>
     <PageLayout>
         <template #hero>
-            <div>Hero Section</div>
+          <KidsHero />
         </template>
-
-        <section>
-            Main Page Content
-        </section>
+        <KidsSolution />
     </PageLayout>
 </template>
