@@ -18,7 +18,7 @@ withDefaults(
 <template>
     <main class="flex flex-col bg-[#FCFFFC]">
         <div 
-            :class="['relative overflow-hidden', heroHeight, heroWidth]"
+            :class="['relative min-h-screen w-full',  heroWidth]"
             v-if="showHero">
             <div :class="['absolute inset-0', heroBg]"></div>
 

@@ -7,7 +7,7 @@ import { RouterLink } from "vue-router";
 
 <template>
     <div class="flex bg-[#FCFFFC] p-8 flex-col">
-        <div class="grid grid-cols-5 gap-6 ">
+        <div class="grid grid-cols-3 sm:grid-cols-5 gap-6 ">
             <div class="flex flex-col gap-4">
                 <img
                     :src="Logo"
