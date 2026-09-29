@@ -17,7 +17,8 @@ export const Company = [
 export const Support = [
   {label: 'Contact Us', to: "/contact-us" },
   {label: 'hello@talksharp.co', to: "" },
-  {label: '+44 754 718 6420', to: "" }
+  {label: '+44 754 718 6420', to: "" },
+   {label: 'Delete Account', to: "/delete-account" },
 ]
 
 export const Legal = [

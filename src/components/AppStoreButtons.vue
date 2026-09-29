@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Primitive } from "reka-ui";
-
+import AppleWhite from "@/assets/AppleWhite.svg";
+import GoogleWhite from "@/assets/GoogleWhite.svg";
 import AppleLogo from "@/assets/AppleLogo.svg";
 import GooglePlayLogo from "@/assets/GooglePlayLogo.svg";
 
@@ -39,7 +40,7 @@ const variantClasses = computed(() => {
       aria-label="Download on the App Store"
     >
       <img
-        :src="AppleLogo"
+        :src="variant === 'green' ? AppleWhite : AppleLogo"
         alt="Apple logo"
         class="w-6 h-6 shrink-0 object-contain"
       />
@@ -66,7 +67,7 @@ const variantClasses = computed(() => {
       aria-label="Get it on Google Play"
     >
       <img
-        :src="GooglePlayLogo"
+        :src="variant === 'green' ? GoogleWhite : GooglePlayLogo"
         alt="Google Play logo"
         class="w-6 h-6 shrink-0 object-contain"
       />
