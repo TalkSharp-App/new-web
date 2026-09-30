@@ -346,25 +346,25 @@ export const ImageLang = [
   },
   {
     id: 3,
-    class: "absolute left-10 sm:left-20 w-20 sm:w-30 pointer-events-none select-none z-0 top-120 sm:top-90",
+    class: "absolute left-10 sm:left-20 w-24 sm:w-30 pointer-events-none select-none z-0 top-120 sm:top-90",
     image: YoImg,
     alt: "cloud image"
   },
   {
     id: 4,
-    class: "absolute bottom-30 sm:bottom-12 left-60 sm:left-20 w-20 sm:w-30 pointer-events-none select-none z-0 sm:top-10",
+    class: "absolute bottom-30 sm:bottom-12 left-60 sm:left-20 w-24 sm:w-30 pointer-events-none select-none z-0 sm:top-10",
     image: IgbImg,
     alt: "cloud image"
   },
   {
     id: 5,
-    class: "absolute top-60 left-60 sm:left-140 w-20 sm:w-30 pointer-events-none select-none z-0 sm:top-110",
+    class: "absolute top-60 left-60 sm:left-140 w-24 sm:w-30 pointer-events-none select-none z-0 sm:top-110",
     image: HauImg,
     alt: "cloud image"
   },
   {
     id: 6,
-    class: "absolute left-5 sm:top-70 sm:right-22 w-20 sm:w-30 pointer-events-none select-none z-0",
+    class: "absolute left-5 sm:top-70 sm:right-22 w-24 sm:w-30 pointer-events-none select-none z-0",
     image: PdImg,
     alt: "pidgin"
   },
