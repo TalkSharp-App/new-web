@@ -2,7 +2,10 @@
 import PageLayout from '@/components/PageLayout.vue';
 import AdultHero from './kids/AdultHero.vue';
 import LanguageCard from '@/components/LanguageCard.vue';
-import Chat from "@/assets/chat.png"
+import Couple from "@/assets/couple.png"
+import Professional from "@/assets/professional.png"
+import Parent from "@/assets/parent.png"
+import Convo from "@/assets/convo.png"
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -13,6 +16,7 @@ import Frame2 from '@/assets/Frame2.svg';
 import Frame3 from '@/assets/Frame3.svg';
 import KindsImg from '@/assets/kids.svg';
 import AppStoreButtons from '@/components/AppStoreButtons.vue';
+import BottomSection from '@/components/BottomSection.vue';
 
 const modules = [Autoplay, Pagination];
 
@@ -23,7 +27,19 @@ const handleGetStarted = () => {
 const slides = [
   {
     text: "Have a clear conversation with your partner without stammering.",
-    image: Chat
+    image: Couple
+  },
+  {
+    text: "",
+    image: Professional
+  },
+  {
+    text: "",
+    image: Parent
+  },
+  {
+    text: "",
+    image: Convo
   }
 ]
 
@@ -131,7 +147,7 @@ const testimonials = [
                             class="absolute h-full w-full"
                         />
 
-                        <p class="mt-3">
+                        <p class="absolute text-white bottom-20">
                             {{ slide.text }}
                         </p>
                     </div>
@@ -230,18 +246,41 @@ const testimonials = [
                 />
             </section>
 
-            <section class="relative max-w-4xl py-20 px-6 sm:px-6 w-full mx-auto bg-black rounded-[40px] my-12">
-                <div class="h-full w-full flex flex-col items-center justify-center">
-                    <span class="font-lucky text-[55px] text-white text-center leading-16">
-                        Your first<br/> hello is free.
-                    </span>
-                    <span class="text-white text-[20px] text-center mb-12">
-                        Pick your language, say your first hello, and watch<br/> what it does to someone's face.
-                    </span>
+            <BottomSection>
+                <span class="font-lucky text-[55px] text-white text-center leading-16">
+                    Your first<br/> hello is free.
+                </span>
+                <span class="text-white text-[20px] text-center mb-12">
+                    Pick your language, say your first hello, and watch<br/> what it does to someone's face.
+                </span>
 
-                    <AppStoreButtons />
-                </div>
-            </section>
+                <AppStoreButtons />
+            </BottomSection>
         </div>
     </PageLayout>
 </template>
+
+<style scoped>
+:deep(.swiper) {
+  padding-bottom: 40px;
+}
+
+:deep(.swiper-pagination) {
+  bottom: 80px !important;
+}
+
+:deep(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: #FA534A;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  width: 24px;
+  border-radius: 9999px;
+  background: #FA534A;
+  opacity: 1;
+}
+</style>

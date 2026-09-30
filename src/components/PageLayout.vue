@@ -1,10 +1,5 @@
 <script lang="ts" setup>
-import CloudImg from '@/assets/cloud.png';
-import YoImg from '@/assets/yo.svg';
-import IgbImg from '@/assets/igb.svg';
-import TwiImg from '@/assets/twi.svg';
-import PdImg from '@/assets/pd.svg';
-import HauImg from '@/assets/hau.svg';
+import { ImageLang } from '@/constant/helper';
 import { computed } from 'vue';
 
 interface PageLayoutType {
@@ -14,51 +9,6 @@ interface PageLayoutType {
   heroBg?: string;
   isHomeScreen?: boolean;
 }
-
-const images = [
-  {
-    id: 1,
-    class: "hidden md:block absolute top-20 right-22 w-44 pointer-events-none select-none z-0",
-    image: CloudImg,
-    alt: "cloud image"
-  },
-  {
-    id: 2,
-    class: "hidden md:block absolute bottom-12 left-20 w-44 pointer-events-none select-none z-0 top-70",
-    image: CloudImg,
-    alt: "cloud image"
-  },
-  {
-    id: 3,
-    class: "hidden md:block absolute top-20 left-20 w-30 pointer-events-none select-none z-0 top-90",
-    image: YoImg,
-    alt: "cloud image"
-  },
-  {
-    id: 4,
-    class: "hidden md:block absolute bottom-12 left-20 w-30 pointer-events-none select-none z-0 top-10",
-    image: IgbImg,
-    alt: "cloud image"
-  },
-  {
-    id: 5,
-    class: "hidden md:block absolute top-20 left-140 w-30 pointer-events-none select-none z-0 top-110",
-    image: HauImg,
-    alt: "cloud image"
-  },
-  {
-    id: 6,
-    class: "hidden md:block absolute top-70 right-22 w-30 pointer-events-none select-none z-0",
-    image: PdImg,
-    alt: "pidgin"
-  },
-  {
-    id: 7,
-    class: "hidden md:block absolute top-2 left-140 w-30 pointer-events-none select-none z-0",
-    image: TwiImg,
-    alt: "twi"
-  }
-];
 
 const props = withDefaults(
   defineProps<PageLayoutType>(), {
@@ -72,13 +22,13 @@ const props = withDefaults(
 
 const _images = computed(() =>
   props.isHomeScreen
-    ? images
-    : images.slice(0, 2)
+    ? ImageLang
+    : ImageLang.slice(0, 2)
 );
 </script>
 
 <template>
-  <main class="flex flex-col bg-[#FCFFFC] min-h-screen">
+  <main class="flex flex-col sm:min-h-screen">
     <div
       :class="['relative overflow-hidden w-full', props.heroHeight]"
       v-if="props.showHero"
@@ -89,7 +39,7 @@ const _images = computed(() =>
         v-for="img in _images"
         :key="img.id"
         :src="img.image"
-        alt=""
+        alt="language"
         aria-hidden="true"
         :class="img.class"
       />

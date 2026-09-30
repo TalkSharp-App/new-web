@@ -1,60 +1,36 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-vue-next";
-
-type Phrase = {
-  language: string;
-  phrase: string;
-  translation: string;
-  color: string;
-};
-
-const phrases = [
-  {
-    language: "Igbo",
-    phrase: "Kedu!",
-    translation: "Hello",
-    color: "bg-app-yellow",
-  },
-  {
-    language: "Yoruba",
-    phrase: "Ndewo!",
-    translation: "Greetings",
-    color: "bg-app-green text-white",
-  },
-  {
-    language: "Twi",
-    phrase: "Daalu!",
-    translation: "Thank you",
-    color: "bg-red-300",
-  },
-  {
-    language: "Pidgin",
-    phrase: "Daalu!",
-    translation: "Thank you",
-    color: "bg-purple-300",
-  },
-] as Phrase[];
+import { phraseCategories, type Phrase } from "@/constant/helper";
 
 const activeIndex = ref(0);
-const activeTab = ref("greeting_elders");
+const activeCategory = ref("greeting_elders");
 
-const handleSwitchTab = (item: string) => {
-  activeTab.value = item
-}
+const activePhrases = computed(() => {
+  return (
+    phraseCategories.find(
+      (category) => category.id === activeCategory.value
+    )?.phrases ?? []
+  );
+});
 
 const next = () => {
+  if (!activePhrases.value.length) return;
+
   activeIndex.value =
-    (activeIndex.value + 1) % phrases.length;
+    (activeIndex.value + 1) % activePhrases.value.length;
 };
 
 const previous = () => {
+  if (!activePhrases.value.length) return;
+
   activeIndex.value =
-    (activeIndex.value - 1 + phrases.length) % phrases.length;
+    (activeIndex.value - 1 + activePhrases.value.length) %
+    activePhrases.value.length;
 };
 
 const getCardPosition = (index: number) => {
-  const total = phrases.length;
+  const total = activePhrases.value.length;
 
   const position =
     (index - activeIndex.value + total) % total;
@@ -110,56 +86,22 @@ const playAudio = (phrase: Phrase) => {
   <div class="w-full">
     <div class="mb-8 flex justify-center gap-3">
       <button
-        @click="handleSwitchTab('greeting_elders')"
+        v-for="category in phraseCategories"
+        :key="category.id"
+        @click="activeCategory = category.id"
         :class="[
-          'rounded-full px-4 py-2 text-sm',
-          activeTab === 'greeting_elders' 
-            ? 'bg-app-green text-white' 
+          'rounded-full border px-4 py-2',
+          activeCategory === category.id
+            ? 'bg-app-green text-white'
             : 'border border-gray-300'
         ]"
       >
-        Greeting Elders
-      </button>
-
-      <button
-        @click="handleSwitchTab('market')"
-        :class="[
-          'rounded-full px-4 py-2 text-sm',
-          activeTab === 'market' 
-            ? 'bg-app-green text-white' 
-            : 'border border-gray-300'
-        ]"
-      >
-        At the Market
-      </button>
-
-      <button
-        @click="handleSwitchTab('friends')"
-        :class="[
-          'rounded-full px-4 py-2 text-sm',
-          activeTab === 'friends' 
-            ? 'bg-app-green text-white' 
-            : 'border border-gray-300'
-        ]"
-      >
-        With Friends
-      </button>
-
-      <button
-        @click="handleSwitchTab('traveling')"
-        :class="[
-          'rounded-full px-4 py-2 text-sm',
-          activeTab === 'traveling' 
-            ? 'bg-app-green text-white' 
-            : 'border border-gray-300'
-        ]"
-      >
-        Traveling
+        {{ category.label }}
       </button>
     </div>
 
     <div
-      class="relative mx-auto flex h-80 max-w-4xl items-center justify-center"
+      class="relative mx-auto flex min-h-80 max-w-4xl items-center justify-center"
     >
       <button
         type="button"
@@ -174,19 +116,25 @@ const playAudio = (phrase: Phrase) => {
         <ChevronLeft :size="20" />
       </button>
       
-      <div class="relative h-57.5 w-[320px]">
+      <div 
+        :class="[
+          'relative w-[320px]',
+          activeCategory === 'traveling' ? 'h-67.5' : 'h-57.5'
+        ]"
+      >
         <div
-          v-for="(phrase, index) in phrases"
-          :key="phrase.phrase"
+          v-for="(phrase, index) in activePhrases"
+          :key="phrase.id"
           :class="[
             `
               absolute inset-0
-              flex h-57.5 w-[320px]
+              flex w-[320px]
               flex-col items-center justify-center
               rounded-4xl
               px-8 text-center
               transition-all duration-500 ease-in-out
             `,
+            activeCategory === 'traveling' ? 'h-70' : 'h-57.5',
             phrase.color,
             getCardPosition(index),
           ]"
@@ -202,17 +150,17 @@ const playAudio = (phrase: Phrase) => {
           />
 
           <div class="relative z-10">
-            <span class="mb-5 text-[24px] font-light">
+            <span class="text-[24px] font-light">
               {{ phrase.language }}
             </span>
 
-            <h2 class="text-[55px] font-lucky font-black">
+            <h2 class="text-[45px] font-lucky font-black leading-12 my-4">
               {{ phrase.phrase }}
             </h2>
 
-            <p class="mt-5 text-[16px]">
+            <p class="text-[16px]">
               Translation:
-              <strong class="italic text-[24px]">
+              <strong class="italic text-[18px]">
                 “{{ phrase.translation }}”
               </strong>
             </p>

@@ -27,14 +27,14 @@ const variantClasses = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
     <Primitive
       as="a"
       :href="appStoreUrl"
       target="_blank"
       rel="noopener noreferrer"
       :class="[
-        'flex items-center justify-center gap-3 h-15.25 px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer',
+        'flex sm:w-auto w-full items-center justify-center gap-3 h-12 sm:h-15.25 px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer',
         variantClasses
       ]"
       aria-label="Download on the App Store"
@@ -45,7 +45,7 @@ const variantClasses = computed(() => {
         class="w-6 h-6 shrink-0 object-contain"
       />
 
-      <div class="flex flex-col text-left leading-tight">
+      <div class="flex flex-col text-left leading-2 sm:leading-tight">
         <span class="text-[10px] tracking-wider font-semibold opacity-90">
           Download on the
         </span>
@@ -61,7 +61,7 @@ const variantClasses = computed(() => {
       target="_blank"
       rel="noopener noreferrer"
       :class="[
-        'flex items-center justify-center gap-3 h-15.25 px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer',
+        'flex sm:w-auto w-full items-center justify-center gap-3 h-12 sm:h-15.25 px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer',
         variantClasses
       ]"
       aria-label="Get it on Google Play"
@@ -72,7 +72,7 @@ const variantClasses = computed(() => {
         class="w-6 h-6 shrink-0 object-contain"
       />
 
-      <div class="flex flex-col text-left leading-tight">
+      <div class="flex flex-col text-left leading-2 sm:leading-tight">
         <span class="text-[10px] uppercase tracking-wider font-semibold opacity-90">
           GET IT ON
         </span>
