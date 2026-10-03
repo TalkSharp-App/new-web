@@ -8,19 +8,19 @@ import HauImg from '@/assets/hau.svg';
 const imageLang = [
   {
     id: 3,
-    class: "absolute sm:left-20 w-20 sm:w-30 pointer-events-none select-none z-0 sm:top-90",
+    class: "absolute md:left-20 w-20 sm:w-30 pointer-events-none select-none z-0 sm:top-90",
     image: YoImg,
     alt: "cloud image"
   },
   {
     id: 4,
-    class: "absolute bottom-12 left-1 sm:left-20 w-20 sm:w-30 pointer-events-none select-none z-0 sm:top-10 top-2",
+    class: "absolute bottom-12 left-1 md:left-20 w-20 sm:w-30 pointer-events-none select-none z-0 sm:top-10 top-2",
     image: IgbImg,
     alt: "cloud image"
   },
   {
     id: 5,
-    class: "absolute sm:top-90 sm:left-160 top-8 left-35 w-20 sm:w-30 pointer-events-none select-none z-0",
+    class: "absolute sm:top-90 md:left-160 top-8 sm:left-140 left-35 w-20 sm:w-30 pointer-events-none select-none z-0",
     image: HauImg,
     alt: "cloud image"
   },
@@ -32,7 +32,7 @@ const imageLang = [
   },
   {
     id: 7,
-    class: "absolute top-2 left-70 sm:top-10 sm:left-150 w-20 sm:w-30 pointer-events-none select-none z-0",
+    class: "absolute top-2 left-70 sm:top-10 sm:left-140 md:left-150 w-20 sm:w-30 pointer-events-none select-none z-0",
     image: TwiImg,
     alt: "twi"
   }

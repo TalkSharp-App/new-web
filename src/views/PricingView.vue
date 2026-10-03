@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import CloudImg from '@/assets/cloud.png';
-import { computed } from 'vue';
 
 const ImageLang = [
   {
@@ -17,15 +16,12 @@ const ImageLang = [
   },
 ]
 
-const _images = computed(() => ImageLang.slice(0, 2)
-);
-
 </script>
 <template>
     <div class="bg-app-green w-full h-84 relative">
 
         <img
-            v-for="img in _images"
+            v-for="img in ImageLang"
             :key="img.id"
             :src="img.image"
             alt="language"

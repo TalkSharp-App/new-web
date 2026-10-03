@@ -44,7 +44,7 @@ const _images = computed(() =>
         :class="img.class"
       />
 
-      <div class="relative z-10 flex flex-col items-center justify-start w-full pt-4 pb-12 md:pb-20">
+      <div class="relative z-10 flex flex-col items-center justify-start w-full pt-4 pb-12 md:pb-20 h-full">
         <slot name="hero" />
       </div>
     </div>

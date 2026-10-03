@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Primitive } from "reka-ui";
 import {
   Trash2,
   Smartphone,
@@ -31,19 +32,23 @@ const deletedData = [
 ];
 
 const requestDeletion = () => {
-    const subject = encodeURIComponent(
-        "TalkSharp Account Deletion Request"
-    );
+  const subject = encodeURIComponent(
+    "TalkSharp Account Deletion Request"
+  );
 
-    const body = encodeURIComponent(`Hello TalkSharp Support,
+  const body = encodeURIComponent(`Hello TalkSharp Support,
 
-    I would like to request the permanent deletion of my TalkSharp account and associated data.
+I would like to request the permanent deletion of my TalkSharp account and associated data.
 
-    Email associated with my TalkSharp account:
+Email associated with my TalkSharp account:
 
-    Thank you.`);
+Thank you.`);
 
-    window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+  const mailto = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+
+  console.log(mailto);
+
+  window.location.assign(mailto);
 };
 </script>
 
@@ -151,11 +156,6 @@ const requestDeletion = () => {
           class="rounded-2xl border border-gray-200 bg-white p-6 md:p-8"
         >
           <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
-            <div
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-green-50"
-            >
-              <Mail class="h-5 w-5 text-green-700" />
-            </div>
 
             <div class="flex-1">
               <h2 class="text-xl font-semibold text-gray-900">
@@ -165,18 +165,27 @@ const requestDeletion = () => {
               <p class="mt-2 max-w-xl text-sm leading-6 text-gray-600">
                 You can request deletion of your TalkSharp account by
                 contacting our support team. Please contact us using the email
-                address associated with your TalkSharp account where possible.
+                address associated with your TalkSharp account where possible. Click on the 
+                <strong>Request Account Deletion</strong> button or send a message <strong>hello@talksharp.co</strong>
               </p>
             </div>
 
-            <button
+            <Primitive
+              as="button"
               type="button"
-              class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-800"
+              class="
+                flex items-center justify-center h-15.25 px-4 rounded-[20px] cursor-pointer
+                border-b-4 font-medium
+                transition-opacity hover:opacity-90
+                disabled:cursor-not-allowed disabled:opacity-50 bg-app-green border-b-[#0d4c18]
+              "
               @click="requestDeletion"
             >
-              <Mail class="h-4 w-4" />
-              Request Account Deletion
-            </button>
+              <div class="gap-2 flex items-center justify-center px-6 text-white">
+                <Mail class="h-6 w-6" />
+                <span>Request Account Deletion</span>
+              </div>
+            </Primitive>
           </div>
         </div>
 

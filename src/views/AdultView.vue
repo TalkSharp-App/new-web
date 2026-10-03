@@ -139,7 +139,7 @@ const testimonials = [
                     Get Started
                 </AppButton>
 
-                <span class="font-lucky text-[24px] sm:text-[48px] md:text-[42px] mt-12 mb-4 text-center leading-6">
+                <span class="font-lucky text-[24px] sm:text-[48px] md:text-[42px] mt-20 mb-4 text-center leading-6">
                     A hello is just the <br class="sm:hidden block"/> beginning.
                 </span>
             </div>
@@ -180,7 +180,7 @@ const testimonials = [
             </Swiper>
 
             <section class="max-w-5xl pt-12 pb-4 px-4 sm:px-6 w-full mx-auto flex justify-center items-center flex-col">
-                <span class="font-lucky text-[24px] sm:text-[42px] sm:mt-12 sm:mb-4 text-center leading-8">
+                <span class="font-lucky text-[24px] sm:text-[42px] sm:mt-12 sm:mb-4 text-center md:leading-8 sm:leading-12 leading-8">
                     WE MADE AFRICAN language learning EASY
                 </span>
                 <span class="text-grey text-[14px] sm:text-[18px] sm:mb-6 text-center!">
@@ -196,6 +196,7 @@ const testimonials = [
                     <img
                         :src="item.image"
                         alt="african language learning"
+                        class="md:h-140 md:w-120 object-fill h-100 w-80"
                     />
                     <div class="flex justify-center flex-col">
                         <span class="font-lucky sm:text-[32px] text-[18px]">
@@ -250,7 +251,7 @@ const testimonials = [
                         </div>
                     </div>
                 </div>
-                <div class="relative sm:block hidden">
+                <div class="relative sm:block hidden w-full">
                     <button
                         @click="scrollLeft"
                         class="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2
@@ -318,7 +319,7 @@ const testimonials = [
                     culture and language.
                 </span>
 
-                <span class="text-[#333] text-[14px] sm:text-[18px] text-center sm:mt-4 max-w-4xl">
+                <span class="text-[#333] text-[14px] sm:text-[18px] text-center sm:mt-4 max-w-4xl px-4">
                     Children learn languages faster - especially when it feels like play. 
                     TalkSharp Kids uses games, songs, and culture quizzes to teach Twi, Igbo, 
                     Yoruba, and Hausa with a guide who cheers every win.

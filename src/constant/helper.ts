@@ -36,17 +36,17 @@ export const Legal = [
 export const Socials = [
     {
         icon: LinkedIn,
-        link: "",
+        link: "https://www.linkedin.com/company/talksharpapp",
         alt: "TalkSharp LinkedIn"
     },
     {
         icon: IG,
-        link: "",
+        link: "https://www.instagram.com/talksharp.ai",
         alt: "TalkSharp Instagram"
     },
     {
         icon: X,
-        link: "",
+        link: "https://x.com/TalkSharp",
         alt: "TalkSharp X"
     }
 ]
