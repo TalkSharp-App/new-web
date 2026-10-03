@@ -15,6 +15,10 @@ const toggleMenu = () => {
 const closeMenu = () => {
   open.value = false;
 };
+
+const goToDemo = () => {
+  window.location.href = "https://app.talksharp.co/guest";
+};
 </script>
 
 <template>
@@ -61,7 +65,12 @@ const closeMenu = () => {
       </nav>
 
       <div class="hidden md:block shrink-0">
-        <AppButton textColor="text-black" class="text-sm md:text-base px-5 py-2.5" variant="secondary">
+        <AppButton 
+          textColor="text-black" 
+          class="text-sm md:text-base px-5 py-2.5 cursor-pointer font-semibold" 
+          variant="secondary"
+          @click="goToDemo"
+        >
           Quick Demo
         </AppButton>
       </div>
@@ -95,10 +104,11 @@ const closeMenu = () => {
 
         <hr class="border-gray-100 my-1" />
 
-        <AppButton
+        <AppButton 
+          class="font-semibold"
           textColor="text-black"
-          class="bg-app-yellow w-full py-3 text-center justify-center font-semibold text-base"
-          @click="closeMenu"
+          @click="goToDemo"
+          variant="secondary"
         >
           Quick Demo
         </AppButton>

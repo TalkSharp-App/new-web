@@ -29,24 +29,24 @@ export const Support = [
 export const Legal = [
   {label: 'Terms of Service', to: "/terms-of-service" },
   {label: 'Privacy Policy', to: "/privacy" },
-  {label: 'Cookie Policy', to: "/cookie-policy" },
+  // {label: 'Cookie Policy', to: "/cookie-policy" },
   {label: 'Delete Your Account', to: "/delete-account" },
 ]
 
 export const Socials = [
     {
         icon: LinkedIn,
-        link: "",
+        link: "https://www.linkedin.com/company/talksharpapp",
         alt: "TalkSharp LinkedIn"
     },
     {
         icon: IG,
-        link: "",
+        link: "https://www.instagram.com/talksharp.ai",
         alt: "TalkSharp Instagram"
     },
     {
         icon: X,
-        link: "",
+        link: "https://x.com/TalkSharp",
         alt: "TalkSharp X"
     }
 ]
@@ -364,7 +364,7 @@ export const ImageLang = [
   },
   {
     id: 6,
-    class: "absolute left-5 sm:top-70 sm:right-22 w-24 sm:w-30 pointer-events-none select-none z-0",
+    class: "absolute sm:top-70 sm:right-22 w-24 sm:w-30 pointer-events-none select-none z-0",
     image: PdImg,
     alt: "pidgin"
   },

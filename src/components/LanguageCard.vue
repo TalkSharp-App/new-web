@@ -84,16 +84,18 @@ const playAudio = (phrase: Phrase) => {
 
 <template>
   <div class="w-full">
-    <div class="mb-8 flex justify-center gap-3">
+    <div
+      class="hide-scrollbar mb-8 flex justify-start gap-3 overflow-x-auto px-4 sm:justify-center"
+    >
       <button
         v-for="category in phraseCategories"
         :key="category.id"
         @click="activeCategory = category.id"
         :class="[
-          'rounded-full border px-4 py-2',
+          'shrink-0 whitespace-nowrap rounded-full border px-4 py-2 sm:text-base text-sm',
           activeCategory === category.id
             ? 'bg-app-green text-white'
-            : 'border border-gray-300'
+            : 'border-gray-300'
         ]"
       >
         {{ category.label }}
@@ -101,14 +103,14 @@ const playAudio = (phrase: Phrase) => {
     </div>
 
     <div
-      class="relative mx-auto flex min-h-80 max-w-4xl items-center justify-center"
+      class="relative mx-auto flex sm:min-h-80 max-w-4xl items-center justify-center"
     >
       <button
         type="button"
         class="
-          absolute left-4 z-20
-          flex h-12 w-12 items-center justify-center
-          rounded-full border-4 border-black
+          absolute left-0 sm:left-4 z-20
+          flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center
+          rounded-full border-3 sm:border-4 border-black
           bg-app-yellow
         "
         @click="previous"
@@ -118,8 +120,8 @@ const playAudio = (phrase: Phrase) => {
       
       <div 
         :class="[
-          'relative w-[320px]',
-          activeCategory === 'traveling' ? 'h-67.5' : 'h-57.5'
+          'relative sm:w-[320px] w-43.75',
+          activeCategory === 'traveling' ? 'h-32.5 sm:h-67.5' : 'h-[124.795px] sm:h-57.5'
         ]"
       >
         <div
@@ -128,13 +130,13 @@ const playAudio = (phrase: Phrase) => {
           :class="[
             `
               absolute inset-0
-              flex w-[320px]
+              flex sm:w-[320px] w-43.75
               flex-col items-center justify-center
               rounded-4xl
               px-8 text-center
               transition-all duration-500 ease-in-out
             `,
-            activeCategory === 'traveling' ? 'h-70' : 'h-57.5',
+            activeCategory === 'traveling' ? 'h-35  sm:h-70' : 'h-[124.795px] sm:h-57.5',
             phrase.color,
             getCardPosition(index),
           ]"
@@ -150,17 +152,17 @@ const playAudio = (phrase: Phrase) => {
           />
 
           <div class="relative z-10">
-            <span class="text-[24px] font-light">
+            <span class="text-[14px] sm:text-[24px] font-light">
               {{ phrase.language }}
             </span>
 
-            <h2 class="text-[45px] font-lucky font-black leading-12 my-4">
+            <h2 class="text-[19.723px] sm:text-[45px] font-lucky font-black leading-4 sm:leading-12 sm:my-4 my-2">
               {{ phrase.phrase }}
             </h2>
 
-            <p class="text-[16px]">
+            <p class="text-[10px] sm:text-[16px]">
               Translation:
-              <strong class="italic text-[18px]">
+              <strong class="italic text-[12px] sm:text-[18px] leading-0">
                 “{{ phrase.translation }}”
               </strong>
             </p>
@@ -169,8 +171,8 @@ const playAudio = (phrase: Phrase) => {
               v-if="index === activeIndex"
               type="button"
               :class="[`
-                absolute -bottom-10 -right-16
-                flex h-16 w-16 items-center justify-center
+                absolute -bottom-4 sm:-bottom-10 -right-12 sm:-right-16
+                flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center
                 rounded-full border-4 border-white
                 bg-black text-white
                 shadow-md`
@@ -187,9 +189,9 @@ const playAudio = (phrase: Phrase) => {
       <button
         type="button"
         class="
-          absolute right-4 z-20
-          flex h-12 w-12 items-center justify-center
-          rounded-full border-4 border-black
+          absolute right-0 sm:right-4 z-20
+          flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center
+          rounded-full border-3 sm:border-4 border-black
           bg-app-yellow
         "
         @click="next"

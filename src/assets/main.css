@@ -15,6 +15,14 @@
   --font-lucky: "Luckiest Guy", cursive;
 }
 
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   font-family: var(--font-sans);
 }
