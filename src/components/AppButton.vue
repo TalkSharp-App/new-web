@@ -4,20 +4,29 @@ import { Primitive } from "reka-ui";
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
   textColor?: string;
+  variant?: "primary" | "secondary";
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: "button",
   textColor: "text-white",
+  variant: "primary"
 });
+
+const btn = props.variant === "primary"
+              ? 'bg-app-green border-b-[#0d4c18]'
+              : 'bg-app-yellow border-b-[#DAA800]'
 </script>
 
 <template>
   <Primitive
     as="button"
     :type="type"
-    :class="[
-      'flex items-center justify-center h-15.25 px-4 rounded-[20px] bg-app-green border-b-4 border-b-[#0d4c18] font-medium transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50',
+    :class="[btn,
+      `flex items-center justify-center h-15.25 px-4 rounded-[20px]
+       border-b-4 font-medium 
+       transition-opacity hover:opacity-90
+       disabled:cursor-not-allowed disabled:opacity-50`,
       props.textColor
     ]"
   >

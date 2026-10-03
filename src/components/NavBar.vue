@@ -24,12 +24,11 @@ const closeMenu = () => {
         <img
           :src="Logo"
           alt="TalkSharp Logo"
-          class="h-8 sm:h-10 md:h-12 w-auto object-contain"
+          class="h-12 w-auto object-contain"
         />
       </RouterLink>
 
-      <nav class="flex items-center h-12 md:h-16 rounded-full bg-white shadow-xs px-4 md:px-6 backdrop-blur-md">
-        <!-- Desktop Navigation Links -->
+      <nav class="flex items-center h-12 md:h-16 rounded-full bg-white/10 md:bg-white border border-white px-2 md:px-6 backdrop-blur-xs">
         <ul class="hidden md:flex items-center gap-6 lg:gap-8">
           <li v-for="link in Links" :key="link.to">
             <RouterLink
@@ -51,26 +50,23 @@ const closeMenu = () => {
           </li>
         </ul>
 
-        <!-- Mobile Menu Toggle Button -->
         <button
           aria-label="Toggle menu"
           class="text-black p-1 md:hidden focus:outline-none cursor-pointer"
           @click="toggleMenu"
         >
-          <X v-if="open" class="h-6 w-6" />
-          <Menu v-else class="h-6 w-6" />
+          <X v-if="open" class="h-6 w-6" color="white"/>
+          <Menu v-else class="h-6 w-6" color="white"/>
         </button>
       </nav>
 
-      <!-- Desktop CTA Button -->
       <div class="hidden md:block shrink-0">
-        <AppButton textColor="text-black" class="bg-app-yellow text-sm md:text-base px-5 py-2.5">
+        <AppButton textColor="text-black" class="text-sm md:text-base px-5 py-2.5" variant="secondary">
           Quick Demo
         </AppButton>
       </div>
     </div>
 
-    <!-- Mobile Drawer Menu -->
     <div
       class="w-full max-w-md overflow-hidden transition-all duration-300 ease-in-out md:hidden"
       :class="open ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0 pointer-events-none'"

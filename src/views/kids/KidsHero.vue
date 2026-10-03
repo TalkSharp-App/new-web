@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppStoreButtons from '@/components/AppStoreButtons.vue';
-import CloudImg from '@/assets/cloud.png';
+import CloudImg from '@/assets/cloud.png'
 </script>
 
 <template>

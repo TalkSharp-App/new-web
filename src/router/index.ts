@@ -3,6 +3,7 @@ import BlogView from '@/views/BlogView.vue'
 import CompanyView from '@/views/CompanyView.vue'
 import ContactUsView from '@/views/ContactUsView.vue'
 import CookiePolicyView from '@/views/CookiePolicyView.vue'
+import DeleteAccountView from '@/views/DeleteAccountView.vue'
 import KidsView from '@/views/KidsView.vue'
 import PricingView from '@/views/PricingView.vue'
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
@@ -56,6 +57,11 @@ const router = createRouter({
       path: "/cookie-policy",
       name: "Cookie Policy",
       component: CookiePolicyView,
+    },
+    {
+      path: "/delete-account",
+      name: "Delete Account",
+      component: DeleteAccountView,
     }
   ],
 })

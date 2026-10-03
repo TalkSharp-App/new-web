@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
-    <div class="flex bg-[#FCFFFC] p-8 flex-col">
+    <div class="flex bg-[#fcfcfc] p-8 flex-col border-t border-t-slate-100">
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 ">
             <div class="flex flex-col gap-4 col-start-1 col-end-3 sm:col-auto">
                 <img

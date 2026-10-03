@@ -1,28 +1,48 @@
 <script lang="ts" setup>
+import { ImageLang } from '@/constant/helper';
+import { computed } from 'vue';
+
 interface PageLayoutType {
   showHero?: boolean;
   heroHeight?: string;
   heroWidth?: string;
   heroBg?: string;
+  isHomeScreen?: boolean;
 }
 
-withDefaults(
+const props = withDefaults(
   defineProps<PageLayoutType>(), {
     showHero: true,
     heroHeight: "h-screen",
     heroWidth: "w-full",
-    heroBg: "bg-app-green"
+    heroBg: "bg-app-green",
+    isHomeScreen: false
   }
+);
+
+const _images = computed(() =>
+  props.isHomeScreen
+    ? ImageLang
+    : ImageLang.slice(0, 2)
 );
 </script>
 
 <template>
-  <main class="flex flex-col bg-[#FCFFFC] min-h-screen">
+  <main class="flex flex-col sm:min-h-screen">
     <div
-      :class="['relative overflow-hidden w-full', heroHeight]"
-      v-if="showHero"
+      :class="['relative overflow-hidden w-full', props.heroHeight]"
+      v-if="props.showHero"
     >
-      <div :class="['absolute inset-0', heroBg]"></div>
+      <div :class="['absolute inset-0', props.heroBg]"></div>
+
+      <img
+        v-for="img in _images"
+        :key="img.id"
+        :src="img.image"
+        alt="language"
+        aria-hidden="true"
+        :class="img.class"
+      />
 
       <div class="relative z-10 flex flex-col items-center justify-start w-full pt-4 pb-12 md:pb-20">
         <slot name="hero" />
