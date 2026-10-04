@@ -77,8 +77,8 @@ const items = [
     },
     {
         title: "Cultural context",
-        description: `Words without context are just sounds. TalkSharp teaches you what to say, 
-        who to say it to, and why it matters — through proverbs, traditions, and the stories your culture is 
+        description: `Words without context are just sounds. TalkSharp teaches you what to say,
+        who to say it to, and why it matters — through proverbs, traditions, and the stories your culture is
         built on.`,
         invert: true,
         image: Frame2
@@ -184,11 +184,11 @@ const testimonials = [
                     WE MADE AFRICAN language learning EASY
                 </span>
                 <span class="text-grey text-[14px] sm:text-[18px] sm:mb-6 text-center!">
-                    TalkSharp helps you learn through real conversations, 
+                    TalkSharp helps you learn through real conversations,
                     culture, tone, and community and not just random words.
                 </span>
 
-                <div 
+                <div
                     v-for="item, index in items"
                     :key="index"
                     :class="['mt-4 flex justify-between items-center gap-4 mb-12', item.invert ? 'flex-col sm:flex-row-reverse' : 'flex-col sm:flex-row']"
@@ -223,7 +223,7 @@ const testimonials = [
                     From diaspora reconnecting with roots to kids surprising their grandparents.
                 </span>
                 <div class="flex overflow-x-auto md:px-0 sm:hidden hide-scrollbar">
-                    <div 
+                    <div
                         v-for="(testimonial, index) in testimonials"
                         :key="index"
                         class="flex mr-2 w-[85%] shrink-0 flex-col rounded-[28px] p-4 sm:w-100 sm:p-6 lg:w-[32%]"
@@ -320,8 +320,8 @@ const testimonials = [
                 </span>
 
                 <span class="text-[#333] text-[14px] sm:text-[18px] text-center sm:mt-4 max-w-4xl px-4">
-                    Children learn languages faster - especially when it feels like play. 
-                    TalkSharp Kids uses games, songs, and culture quizzes to teach Twi, Igbo, 
+                    Children learn languages faster - especially when it feels like play.
+                    TalkSharp Kids uses games, songs, and culture quizzes to teach Twi, Igbo,
                     Yoruba, and Hausa with a guide who cheers every win.
                 </span>
                 <AppButton class="px-12 my-8"
@@ -333,22 +333,21 @@ const testimonials = [
                     :src="KindsImg"
                     alt="kids image"
                     class="w-screen h-140 object-cover sm:mt-18"
-                    
+
                 />
             </section>
 
-            <BottomSection>
-                <span class="font-lucky text-[24px] sm:text-[55px] text-white text-center sm:leading-16 leading-6">
-                    Your first<br class="sm:block hidden"/> hello is free.
-                </span>
-                <span class="text-white text-[14px] sm:text-[20px] text-center mb-12">
-                    Pick your language, say your first hello, and watch<br class="sm:block hidden"/> what it does to someone's face.
-                </span>
-                
-                <div class="-mt-8 sm:mt-0 flex w-full z-9999">
-                <AppStoreButtons />
-                </div>
-            </BottomSection>
+          <BottomSection>
+            <h2 class="font-lucky text-[28px] sm:text-[55px] text-white text-center sm:leading-16 leading-tight mb-4">
+              Your first<br class="hidden sm:block" /> hello is free.
+            </h2>
+            <p class="text-white/90 text-[14px] sm:text-[20px] text-center max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+              Pick your language, say your first hello, and watch<br class="hidden sm:block" /> what it does to someone's face.
+            </p>
+            <div class="flex justify-center w-full z-10 mb-4">
+              <AppStoreButtons />
+            </div>
+          </BottomSection>
         </div>
     </PageLayout>
 </template>

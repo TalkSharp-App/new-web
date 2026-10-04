@@ -27,14 +27,14 @@ const variantClasses = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+  <div class="flex flex-row items-center justify-center gap-3 sm:gap-4 w-auto">
     <Primitive
       as="a"
       :href="appStoreUrl"
       target="_blank"
       rel="noopener noreferrer"
       :class="[
-        'flex sm:w-auto w-full items-center justify-center gap-3 h-12 sm:h-15.25 px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer',
+        'flex items-center justify-center gap-2.5 sm:gap-3 h-12 sm:h-15.25 px-4 sm:px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer shrink-0',
         variantClasses
       ]"
       aria-label="Download on the App Store"
@@ -42,14 +42,14 @@ const variantClasses = computed(() => {
       <img
         :src="variant === 'green' ? AppleWhite : AppleLogo"
         alt="Apple logo"
-        class="w-6 h-6 shrink-0 object-contain"
+        class="w-5 h-5 sm:w-6 sm:h-6 shrink-0 object-contain"
       />
 
       <div class="flex flex-col text-left leading-2 sm:leading-tight">
-        <span class="text-[10px] tracking-wider font-semibold opacity-90">
+        <span class="text-[9px] sm:text-[10px] tracking-wider font-semibold opacity-90">
           Download on the
         </span>
-        <span class="text-base font-bold font-sans">
+        <span class="text-sm sm:text-base font-bold font-sans">
           App Store
         </span>
       </div>
@@ -61,7 +61,7 @@ const variantClasses = computed(() => {
       target="_blank"
       rel="noopener noreferrer"
       :class="[
-        'flex sm:w-auto w-full items-center justify-center gap-3 h-12 sm:h-15.25 px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer',
+        'flex items-center justify-center gap-2.5 sm:gap-3 h-12 sm:h-15.25 px-4 sm:px-6 rounded-[20px] border-b-4 font-medium transition-opacity hover:opacity-95 active:scale-95 cursor-pointer shrink-0',
         variantClasses
       ]"
       aria-label="Get it on Google Play"
@@ -69,14 +69,14 @@ const variantClasses = computed(() => {
       <img
         :src="variant === 'green' ? GoogleWhite : GooglePlayLogo"
         alt="Google Play logo"
-        class="w-6 h-6 shrink-0 object-contain"
+        class="w-5 h-5 sm:w-6 sm:h-6 shrink-0 object-contain"
       />
 
       <div class="flex flex-col text-left leading-2 sm:leading-tight">
-        <span class="text-[10px] uppercase tracking-wider font-semibold opacity-90">
+        <span class="text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold opacity-90">
           GET IT ON
         </span>
-        <span class="text-base font-bold font-sans">
+        <span class="text-sm sm:text-base font-bold font-sans">
           Google Play
         </span>
       </div>
