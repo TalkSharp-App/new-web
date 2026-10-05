@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 import { Menu, X } from "lucide-vue-next";
 import Logo from "@/assets/logo-white.svg";
 import AppButton from './AppButton.vue';
-import { Links } from '@/constant/helper.ts';
+import { Links } from '@/constant/helper';
 
 const open = ref(false);
 
@@ -65,9 +65,9 @@ const goToDemo = () => {
       </nav>
 
       <div class="hidden md:block shrink-0">
-        <AppButton 
-          textColor="text-black" 
-          class="text-sm md:text-base px-5 py-2.5 cursor-pointer font-semibold" 
+        <AppButton
+          textColor="text-black"
+          class="text-sm md:text-base px-5 py-2.5 cursor-pointer font-semibold"
           variant="secondary"
           @click="goToDemo"
         >
@@ -104,7 +104,7 @@ const goToDemo = () => {
 
         <hr class="border-gray-100 my-1" />
 
-        <AppButton 
+        <AppButton
           class="font-semibold"
           textColor="text-black"
           @click="goToDemo"

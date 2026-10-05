@@ -130,7 +130,7 @@ import { RouterLink } from "vue-router";
             </div>
         </div>
 
-        <div class="w-full h-px bg-[#E0E0E0] mt-10 mb-6"/>
+        <div class="w-full h-px bg-border mt-10 mb-6"/>
         <div class="flex justify-center items-center">
             <span class="text-[12px] text-[#9CA3AF]">
                 ©️ 2026 TalkSharp. All rights reserved.
