@@ -17,7 +17,7 @@ const isSubmitted = ref(false);
 const handleSubmit = () => {
   if (!email.value) return;
 
-  // Perform submission logic or trigger event
+  // submission logic
   emit('submit', email.value);
   isSubmitted.value = true;
 
@@ -38,7 +38,6 @@ const handleSubmit = () => {
         @click.self="emit('close')"
       >
         <div class="relative w-full max-w-md rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border-2 border-black">
-          <!-- Close Button -->
           <button
             @click="emit('close')"
             class="absolute right-4 top-4 rounded-full p-2 text-gray-500 hover:bg-gray-100 transition-colors"
@@ -49,7 +48,7 @@ const handleSubmit = () => {
 
           <!-- Success State -->
           <div v-if="isSubmitted" class="text-center py-6">
-            <h3 class="font-lucky text-2xl sm:text-3xl text-app-green mb-2">You're on the list! 🎉</h3>
+            <h3 class="font-lucky text-2xl sm:text-3xl text-app-green mb-2">You're on the list!</h3>
             <p class="text-gray-600 text-sm">We'll reach out as soon as early access opens up.</p>
           </div>
 
