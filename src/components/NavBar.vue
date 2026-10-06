@@ -32,7 +32,7 @@ const goToDemo = () => {
         />
       </RouterLink>
 
-      <nav class="flex items-center h-12 md:h-16 rounded-full bg-white/10 md:bg-white border border-white px-2 md:px-6 backdrop-blur-xs">
+      <nav class="flex items-center ml-12 h-12 md:h-16 rounded-full bg-white/10 md:bg-white border border-white px-2 md:px-6 backdrop-blur-xs">
         <ul class="hidden md:flex items-center gap-6 lg:gap-8">
           <li v-for="link in Links" :key="link.to">
             <RouterLink

@@ -23,7 +23,7 @@ const btn = props.variant === "primary"
     as="button"
     :type="type"
     :class="[btn,
-      `flex items-center justify-center h-15.25 px-4 rounded-[20px] cursor-pointer
+      `flex items-center justify-center h-15.25 px-4 w-70 rounded-[20px] cursor-pointer
        border-b-4 font-medium 
        transition-opacity hover:opacity-90
        disabled:cursor-not-allowed disabled:opacity-50`,
