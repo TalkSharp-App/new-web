@@ -131,7 +131,7 @@ I built TalkSharp to change that. We are making African heritage languages acc
         />
 
         <div class="relative flex justify-center items-center z-10 flex-col pt-12 md:pt-16">
-            <span class="font-lucky sm:text-[40px] md:text-[64px] text-[32px] text-white -mb-6">
+            <span class="font-lucky sm:text-[40px] md:text-[64px] text-[32px] text-white sm:-mb-6 -mb-3">
                 our goal is to preserve
             </span>
             <span class="font-lucky sm:text-[40px] md:text-[64px] text-[32px] text-app-yellow">

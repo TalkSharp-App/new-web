@@ -352,7 +352,7 @@ export const ImageLang = [
   },
   {
     id: 4,
-    class: "absolute bottom-30 sm:bottom-12 left-60 sm:left-20 w-24 sm:w-30 pointer-events-none select-none z-0 sm:top-10",
+    class: "absolute bottom-20 sm:bottom-12 left-10 sm:left-20 w-24 sm:w-30 pointer-events-none select-none z-0 sm:top-10",
     image: IgbImg,
     alt: "cloud image"
   },

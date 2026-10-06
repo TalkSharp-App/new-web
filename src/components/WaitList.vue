@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { X } from 'lucide-vue-next';
+import { db } from '@/config/firebase';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 defineProps<{
   isOpen: boolean;
@@ -12,20 +14,64 @@ const emit = defineEmits<{
 }>();
 
 const email = ref('');
+const errorMsg = ref('');
 const isSubmitted = ref(false);
+const isLoading = ref(false)
 
-const handleSubmit = () => {
-  if (!email.value) return;
+let errorTimeout: ReturnType<typeof setTimeout> | undefined;
+const showError = (message: string) => {
+  errorMsg.value = message;
 
-  // submission logic
-  emit('submit', email.value);
-  isSubmitted.value = true;
+  if (errorTimeout) {
+    clearTimeout(errorTimeout);
+  }
 
-  setTimeout(() => {
-    isSubmitted.value = false;
+  errorTimeout = setTimeout(() => {
+    errorMsg.value = "";
+  }, 4000);
+};
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const handleSubmit = async () => {
+  console.log('did it get here')
+  const normalizedEmail = email.value.trim().toLowerCase();
+
+  errorMsg.value = "";
+
+  if (!normalizedEmail) {
+    showError("Please enter your email address.");
+    return;
+  }
+
+  if(!emailRegex.test(normalizedEmail)) {
+    showError("Please enter a valid email address.");
+    return;
+  }
+
+  isLoading.value = true;
+
+  try {
+    const emailDocumentId = encodeURIComponent(normalizedEmail);
+    const waitlistRef = doc(
+      db,
+      "waitlist-kids",
+      emailDocumentId
+    );
+
+    await setDoc(waitlistRef, {
+      email: normalizedEmail,
+      createdAt: serverTimestamp(),
+    });
+
+    isSubmitted.value = true;
     email.value = '';
-    emit('close');
-  }, 2000);
+    // emit('close');
+  } catch (error) {
+    console.error("Waitlist subscription error:", error);
+    showError( "Something went wrong. Please try again.");
+  } finally {
+    isLoading.value = false;
+  }
 };
 </script>
 
@@ -58,7 +104,7 @@ const handleSubmit = () => {
               Join the Waitlist
             </h3>
             <p class="text-gray-600 text-sm mb-6">
-              Be the first to experience TalkSharp. Enter your email below to get early access.
+              Be the first to experience TalkSharp Kids. Enter your email below to get early access.
             </p>
 
             <form @submit.prevent="handleSubmit" class="flex flex-col gap-4">
@@ -83,6 +129,11 @@ const handleSubmit = () => {
                 Submit
               </button>
             </form>
+            <div class="flex justify-center items-center">
+              <span
+                  class="text-center text-xs font-light text-red-700 mt-2"
+              >{{ errorMsg }}</span>
+            </div>
           </div>
         </div>
       </div>

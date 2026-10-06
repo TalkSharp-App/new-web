@@ -13,7 +13,7 @@ interface PageLayoutType {
 const props = withDefaults(
   defineProps<PageLayoutType>(), {
     showHero: true,
-    heroHeight: "h-screen",
+    heroHeight: "h-auto",
     heroWidth: "w-full",
     heroBg: "bg-app-green",
     isHomeScreen: false
