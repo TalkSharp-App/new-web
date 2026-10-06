@@ -113,6 +113,11 @@ const scrollTeamRight = () => {
   }
 };
 
+const story = `A few years ago, not long after I moved to the UK, I was at a family gathering when my grandmother called from Lagos to speak with my cousins. She spoke to them in Yoruba. They could only stammer a few words back, most of them mispronounced.
+In that moment, I saw the language gap that growing up in the diaspora can create, and how it quietly cuts people off from their own heritage.
+This isn’t just happening in my family alone. Hundreds of thousands of African diaspora families in the UK, and millions more worldwide, are living with the same quiet gap. It isn't for lack of desire or reconnection. Major apps and platforms barely include African languages, and when they do, it feels like an afterthought. The result is weaker family bonds, cultural disconnection, and a growing sense of lost identity among the African diaspora. Families drift apart a little, culture gets lost along the way, and the African diaspora ends up feeling disconnected from their heritage.
+I built TalkSharp to change that. We are making African heritage languages accessible, engaging, and culturally rooted, helping families across the diaspora close the gap, speak with confidence, and stay connected to where they come from.`
+
 </script>
 <template>
     <div class="bg-app-green w-full h-120 relative">
@@ -160,7 +165,9 @@ const scrollTeamRight = () => {
                 </div>
 
                 <div class="flex-1 h-auto w-full px-4 my-4 sm:border-none border-t border-solid border-t-slate-200 py-4">
-
+                    <span class="sm:text-[14px] md:text-[12px] text-[16px] lg:text-[16px]">
+                        {{ story }}
+                    </span>
                 </div>
             </div>
         </div>
