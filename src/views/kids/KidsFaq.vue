@@ -2,6 +2,13 @@
 import AppButton from '@/components/AppButton.vue';
 import BottomSection from '@/components/BottomSection.vue';
 import { ref } from 'vue';
+import WaitlistModal from '@/components/WaitList.vue';
+
+const isWaitlistOpen = ref(false);
+
+const handleWaitlistSubmit = (email: string) => {
+  console.log('Submitted email to waitlist:', email);
+};
 
 interface FaqItem {
   id: number;
@@ -117,10 +124,15 @@ const toggleFaq = (id: number) => {
         </p>
 
         <div class="flex justify-center w-full z-10">
-          <AppButton class="h-12 px-10 text-base font-semibold">
+          <AppButton @click="isWaitlistOpen = true" class="h-12 px-10 text-base font-semibold">
             Join Waitlist
           </AppButton>
         </div>
+        <WaitlistModal
+          :isOpen="isWaitlistOpen"
+          @close="isWaitlistOpen = false"
+          @submit="handleWaitlistSubmit"
+        />
       </BottomSection>
     </div>
   </section>

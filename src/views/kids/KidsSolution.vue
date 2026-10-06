@@ -5,6 +5,13 @@ import SlideImage from '@/assets/kidscarousel.png';
 import QuestImage from '@/assets/Question.png';
 import LearnImage from '@/assets/kidslearn.png'
 import AppButton from '@/components/AppButton.vue';
+import WaitlistModal from '@/components/WaitList.vue';
+
+const isWaitlistOpen = ref(false);
+
+const handleWaitlistSubmit = (email: string) => {
+  console.log('Submitted email to waitlist:', email);
+};
 
 // Carousel Slides Data
 const slides = [
@@ -243,10 +250,15 @@ onUnmounted(() => {
       </div>
 
       <div class="mt-8">
-        <AppButton class="h-11 px-10">
+        <AppButton @click="isWaitlistOpen = true" class="h-11 px-10">
           Join Waitlist
         </AppButton>
       </div>
+      <WaitlistModal
+        :isOpen="isWaitlistOpen"
+        @close="isWaitlistOpen = false"
+        @submit="handleWaitlistSubmit"
+      />
     </div>
   </section>
 </template>
