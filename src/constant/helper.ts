@@ -334,13 +334,13 @@ export const phraseCategories: PhraseCategory[] = [
 export const ImageLang = [
   {
     id: 1,
-    class: "absolute top-20 right-1 sm:right-22 w-24 sm:w-44 pointer-events-none select-none z-0",
+    class: "absolute top-15 left-1 sm:left-auto sm:right-22 w-24 sm:w-44 pointer-events-none select-none z-0",
     image: CloudImg,
     alt: "cloud image"
   },
   {
     id: 2,
-    class: "absolute top-60 sm:bottom-12 left-10 sm:left-20 w-24 sm:w-44 pointer-events-none select-none z-0 sm:top-70",
+    class: "absolute top-100 right-4 sm:right-auto sm:left-20 w-24 sm:w-44 pointer-events-none select-none z-0 sm:top-70",
     image: CloudImg,
     alt: "cloud image"
   },
@@ -352,7 +352,7 @@ export const ImageLang = [
   },
   {
     id: 4,
-    class: "absolute bottom-30 sm:bottom-12 left-60 sm:left-20 w-24 sm:w-30 pointer-events-none select-none z-0 sm:top-10",
+    class: "absolute bottom-20 sm:bottom-12 left-10 sm:left-20 w-24 sm:w-30 pointer-events-none select-none z-0 sm:top-10",
     image: IgbImg,
     alt: "cloud image"
   },

@@ -13,7 +13,7 @@ interface PageLayoutType {
 const props = withDefaults(
   defineProps<PageLayoutType>(), {
     showHero: true,
-    heroHeight: "h-screen",
+    heroHeight: "h-auto",
     heroWidth: "w-full",
     heroBg: "bg-app-green",
     isHomeScreen: false
@@ -44,7 +44,7 @@ const _images = computed(() =>
         :class="img.class"
       />
 
-      <div class="relative z-10 flex flex-col items-center justify-start w-full pt-4 pb-12 md:pb-20 h-full">
+      <div class="relative z-10 flex flex-col items-center justify-start w-full pt-4 md:pb-20 h-full">
         <slot name="hero" />
       </div>
     </div>

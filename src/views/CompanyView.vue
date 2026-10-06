@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue';
 import CloudImg from '@/assets/cloud.png';
 import CEO from '@/assets/ceo.jpeg';
 import { MoveRight } from 'lucide-vue-next';
@@ -14,15 +15,15 @@ const goToDemo = () => {
 };
 
 const ImageLang = [
-  {
+ {
     id: 1,
-    class: "absolute top-5 right-1 sm:right-22 w-24 sm:w-44 pointer-events-none select-none z-0",
+    class: "absolute top-15 left-1 sm:left-auto sm:right-22 w-24 sm:w-44 pointer-events-none select-none z-0 opacity-50",
     image: CloudImg,
     alt: "cloud image"
   },
   {
     id: 2,
-    class: "absolute top-30 sm:bottom-12 left-3 sm:left-20 w-24 sm:w-44 pointer-events-none select-none z-0",
+    class: "absolute top-80 right-4 sm:right-auto sm:left-20 w-24 sm:w-44 pointer-events-none select-none z-0 sm:top-60 opacity-50",
     image: CloudImg,
     alt: "cloud image"
   },
@@ -97,6 +98,26 @@ const team = [
     }
 ]
 
+const activeTeamIndex = ref(0);
+const teamContainer = ref<HTMLElement | null>(null);
+
+const scrollTeamLeft = () => {
+  if (teamContainer.value) {
+    teamContainer.value.scrollBy({ left: -280, behavior: 'smooth' });
+  }
+};
+
+const scrollTeamRight = () => {
+  if (teamContainer.value) {
+    teamContainer.value.scrollBy({ left: 280, behavior: 'smooth' });
+  }
+};
+
+const story = `A few years ago, not long after I moved to the UK, I was at a family gathering when my grandmother called from Lagos to speak with my cousins. She spoke to them in Yoruba. They could only stammer a few words back, most of them mispronounced.
+In that moment, I saw the language gap that growing up in the diaspora can create, and how it quietly cuts people off from their own heritage.
+This isn’t just happening in my family alone. Hundreds of thousands of African diaspora families in the UK, and millions more worldwide, are living with the same quiet gap. It isn't for lack of desire or reconnection. Major apps and platforms barely include African languages, and when they do, it feels like an afterthought. The result is weaker family bonds, cultural disconnection, and a growing sense of lost identity among the African diaspora. Families drift apart a little, culture gets lost along the way, and the African diaspora ends up feeling disconnected from their heritage.
+I built TalkSharp to change that. We are making African heritage languages accessible, engaging, and culturally rooted, helping families across the diaspora close the gap, speak with confidence, and stay connected to where they come from.`
+
 </script>
 <template>
     <div class="bg-app-green w-full h-120 relative">
@@ -109,16 +130,16 @@ const team = [
             :class="[img.class, 'z-1']"
         />
 
-        <div class="relative flex justify-center items-center z-10 flex-col pt-12">
-            <span class="font-lucky sm:text-[40px] md:text-[64px] text-[32px] text-white -mb-6">
+        <div class="relative flex justify-center items-center z-10 flex-col pt-12 md:pt-16">
+            <span class="font-lucky sm:text-[40px] md:text-[64px] text-[32px] text-white sm:-mb-6 -mb-3">
                 our goal is to preserve
             </span>
             <span class="font-lucky sm:text-[40px] md:text-[64px] text-[32px] text-app-yellow">
                 africa heritage
             </span>
 
-            <div class="mt-20 bg-white sm:w-[90%] md:w-[80%] sm:h-140 
-                rounded-[34.519px] border-[2.866px] 
+            <div class="mt-20 bg-white sm:w-[90%] md:w-[80%] sm:h-140
+                rounded-[34.519px] border-[2.866px]
                 border-solid border-[#F0F0F0]
                 flex justify-between items-center sm:flex-row flex-col
                 "
@@ -144,7 +165,9 @@ const team = [
                 </div>
 
                 <div class="flex-1 h-auto w-full px-4 my-4 sm:border-none border-t border-solid border-t-slate-200 py-4">
-                    
+                    <span class="sm:text-[14px] md:text-[12px] text-[16px] lg:text-[16px]">
+                        {{ story }}
+                    </span>
                 </div>
             </div>
         </div>
@@ -180,7 +203,7 @@ const team = [
                 >
                     <span
                         class="text-app-green font-semibold cursor-pointer text-[14px] sm:text-[12px] md:text-[14px]"
-                    >{{ item.linkText }}</span> 
+                    >{{ item.linkText }}</span>
                     <MoveRight class="text-app-green mt-1"/>
                 </a>
             </div>
@@ -232,11 +255,75 @@ const team = [
         />
     </div>
 
-    <div class="-mt-10 sm:-mt-20 flex justify-center items-center flex-col">
-        <span class="text-[32px] sm:text-[40px] text-center md:text-[56px] font-lucky">
+    <div class="-mt-10 sm:-mt-20 flex justify-center items-center flex-col w-full">
+        <span class="text-[32px] sm:text-[40px] text-center md:text-[56px] font-lucky mb-6 sm:mb-8">
             The team
         </span>
-        <div class="p-2 sm:px-20 flex justify-between items-center gap-12">
+
+        <div class="md:hidden w-full px-4">
+          <div
+              ref="teamContainer"
+              class="flex gap-6 overflow-x-auto scroll-smooth hide-scrollbar pb-4 px-2"
+          >
+              <div
+                  v-for="(item, index) in team"
+                  :key="index"
+                  class="w-[85%] shrink-0 flex flex-col gap-3"
+              >
+                  <div class="w-full h-72">
+                      <img
+                          :src="Principle"
+                          :alt="item.name"
+                          class="w-full h-full object-cover"
+                      />
+                  </div>
+
+                  <div class="w-full p-3 sm:p-4 flex justify-between items-center border border-black font-semibold shadow-sm bg-white gap-2">
+                    <div class="flex flex-col gap-0.5 min-w-0 flex-1">
+                        <span class="text-[18px] sm:text-[20px] font-lucky truncate leading-tight">
+                            {{ item.name }}
+                        </span>
+                        <span class="text-[13px] sm:text-[15px] font-medium text-gray-700 leading-snug">
+                            {{ item.role }}
+                        </span>
+                    </div>
+                    <a
+                        v-if="item.linkedIn"
+                        :href="item.linkedIn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cursor-pointer shrink-0 ml-2"
+                    >
+                        <img
+                            :src="LinkedIn"
+                            alt="linkedin logo"
+                            class="w-6 h-6 sm:w-7 sm:h-7"
+                        />
+                    </a>
+                    <div v-else class="w-6 h-6 sm:w-7 sm:h-7 shrink-0"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-center items-center gap-4 mt-4">
+                <button
+                    @click="scrollTeamLeft"
+                    class="w-10 h-10 flex justify-center items-center rounded-full border border-black bg-white active:bg-gray-100 text-lg font-bold shadow-sm"
+                    aria-label="Scroll left"
+                >
+                    ←
+                </button>
+                <button
+                    @click="scrollTeamRight"
+                    class="w-10 h-10 flex justify-center items-center rounded-full border border-black bg-white active:bg-gray-100 text-lg font-bold shadow-sm"
+                    aria-label="Scroll right"
+                >
+                    →
+                </button>
+            </div>
+        </div>
+
+        <div class="hidden md:flex p-2 sm:px-20 justify-between items-center gap-12 w-full max-w-6xl">
             <div class="w-[45%] h-full md:block hidden">
                 <img
                     :src="Principle"
@@ -245,26 +332,30 @@ const team = [
                 />
             </div>
 
-            <div class="flex flex-1 flex-col gap-4 border-t border-r border-l border-solid border-[#D6D6D6]">
+            <div class="flex flex-1 flex-col gap-4">
                 <div
-                    v-for="item, index in team"
+                    v-for="(item, index) in team"
                     :key="index"
-                    :class="[`w-full p-4 flex justify-between 
-                                items-center 
-                                border-solid`,
-                                index === 0 ? 'border-black border' : 'border-b border-b-[#D6D6D6]'
-                            ]"
+                    @click="activeTeamIndex = index"
+                    :class="[
+                        'w-full p-4 flex justify-between items-center cursor-pointer transition-all duration-200 select-none',
+                        activeTeamIndex === index
+                            ? 'border-2 border-black font-semibold shadow-sm bg-white'
+                            : 'border-b border-b-[#D6D6D6] hover:border-gray-400'
+                    ]"
                 >
                     <span class="text-[18px] sm:text-[24px] font-lucky mt-2">
                         {{ item.name }}
                     </span>
-                    <span :class="['text-center text-[14px] sm:text-[18px]', index === 0 && 'font-semibold']">
+                    <span :class="['text-center text-[14px] sm:text-[18px]', activeTeamIndex === index && 'font-semibold']">
                         {{ item.role }}
                     </span>
-                    <a 
+                    <a
+                        v-if="item.linkedIn"
                         :href="item.linkedIn"
                         target="_blank"
                         rel="noopener noreferrer"
+                        @click.stop
                         class="cursor-pointer"
                     >
                         <img
@@ -273,6 +364,7 @@ const team = [
                             class="w-8 h-8"
                         />
                     </a>
+                    <div v-else class="w-8 h-8"></div>
                 </div>
             </div>
         </div>
