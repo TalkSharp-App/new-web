@@ -67,7 +67,7 @@ const goToDemo = () => {
       <div class="hidden md:block shrink-0">
         <AppButton
           textColor="text-black"
-          class="text-sm md:text-base px-5 py-2.5 cursor-pointer font-semibold"
+          class="w-auto text-sm md:text-base px-5 py-2.5 cursor-pointer font-semibold"
           variant="secondary"
           @click="goToDemo"
         >

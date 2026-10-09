@@ -193,9 +193,9 @@ I built TalkSharp to change that. We are making African heritage languages acc
                     {{ item.title1 }}
                 </span>
                 <span class="text-[24px] md:text-[34px] font-lucky -mt-3">
-                    {{ item.title1 }}
+                    {{ item.title2 }}
                 </span>
-                <span class="sm:text-[14px] md:text-[18px] text-grey leading-5">
+                <span class="sm:text-[14px] md:text-[18px] text-grey leading-6">
                     {{ item.content }}
                 </span>
                 <a class="flex gap-2 items-center mt-4"
