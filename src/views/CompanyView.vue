@@ -9,6 +9,11 @@ import Sig from '@/assets/Sig.svg';
 import LinkedIn from '@/assets/LinkedInLogo.svg';
 import Letter from '@/assets/Letter.png';
 import AppButton from '@/components/AppButton.vue';
+import Ayo from '@/assets/ayo.png';
+import Emma from '@/assets/emma.jpeg';
+import Sophie from '@/assets/sophie.jpeg';
+import Betty from '@/assets/betty.jpeg';
+import David from '@/assets/david.jpeg';
 
 const goToDemo = () => {
   window.location.href = "https://app.talksharp.co/guest";
@@ -69,32 +74,38 @@ const team = [
     {
         name: "Kola",
         role: "CEO/CO-FOUNDER",
-        linkedIn: "https://www.linkedin.com/in/kola-oreoluwa"
+        linkedIn: "https://www.linkedin.com/in/kola-oreoluwa",
+        image: CEO,
     },
     {
         name: "Ayo",
         role: "CTO/LEAD ENGINEER",
-        linkedIn: "https://www.linkedin.com/in/ayobamiajibola"
+        linkedIn: "https://www.linkedin.com/in/ayobamiajibola",
+        image: Ayo
     },
     {
         name: "Sophie",
         role: "HEAD OF COMMUNITY & PARTNERSHIP",
-        linkedIn: "https://www.linkedin.com/in/sophie-abache"
+        linkedIn: "https://www.linkedin.com/in/sophie-abache",
+        image: Sophie
     },
     {
         name: "David",
         role: "PRODUCT DESIGN",
-        linkedIn: "https://www.linkedin.com/in/davidaustin9"
+        linkedIn: "https://www.linkedin.com/in/davidaustin9",
+        image: David
     },
     {
         name: "Betty",
         role: "SOFTWARE DEVELOPER",
-        linkedIn: "https://www.linkedin.com/in/elizabethafolabib"
+        linkedIn: "https://www.linkedin.com/in/elizabethafolabib",
+        image: Betty
     },
     {
         name: "Emma",
         role: "SOFTWARE DEVELOPER",
-        linkedIn: ""
+        linkedIn: "",
+        image: Emma
     }
 ]
 
@@ -270,11 +281,11 @@ I built TalkSharp to change that. We are making African heritage languages acc
                   :key="index"
                   class="w-[85%] shrink-0 flex flex-col gap-3"
               >
-                  <div class="w-full h-72">
+                  <div class="w-full sm:h-120 h-72">
                       <img
-                          :src="Principle"
+                          :src="item.image"
                           :alt="item.name"
-                          class="w-full h-full object-cover"
+                          class="w-full h-full object-cover object-top shadow-lg"
                       />
                   </div>
 
@@ -325,11 +336,19 @@ I built TalkSharp to change that. We are making African heritage languages acc
 
         <div class="hidden md:flex p-2 sm:px-20 justify-between items-center gap-12 w-full max-w-6xl">
             <div class="w-[45%] h-full md:block hidden">
-                <img
-                    :src="Principle"
-                    alt="principle"
-                    class="w-full h-full object-fill"
-                />
+                <div
+                    class="relative w-full h-120 bg-[#E8EEE9]
+                        rounded-tl-[40px] rounded-tr-[120px]
+                        rounded-bl-[120px] rounded-br-[40px]
+                        overflow-hidden shadow-lg border-8 border-slate-300"
+                >
+                    <img
+                        :src="team[activeTeamIndex]?.image"
+                        :alt="team[activeTeamIndex]?.name"
+                        class="w-full h-full object-cover
+                            object-top transition-all duration-500"
+                    />
+                </div>
             </div>
 
             <div class="flex flex-1 flex-col gap-4">
