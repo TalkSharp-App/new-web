@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppButton from '@/components/AppButton.vue';
+// import AppButton from '@/components/AppButton.vue';
 import { ref } from 'vue';
 import WaitlistModal from '@/components/WaitList.vue';
 
@@ -23,9 +23,9 @@ const handleWaitlistSubmit = (email: string) => {
     </div>
 
     <div class="mt-8">
-      <AppButton @click="isWaitlistOpen = true" class="h-11 px-10 bg-white" text-color="black">
+      <!-- <AppButton @click="isWaitlistOpen = true" class="h-11 px-10 bg-white" text-color="black">
         Join Waitlist
-      </AppButton>
+      </AppButton> -->
       <WaitlistModal
         :isOpen="isWaitlistOpen"
         @close="isWaitlistOpen = false"

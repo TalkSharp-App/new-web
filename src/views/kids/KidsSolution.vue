@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import QuoteSvg from '@/assets/quote-up.svg';
-import SlideImage from '@/assets/kidscarousel.png';
+import SlideImage from '@/assets/fam1.png';
 import QuestImage from '@/assets/Question.png';
 import LearnImage from '@/assets/kidslearn.png'
 import AppButton from '@/components/AppButton.vue';
