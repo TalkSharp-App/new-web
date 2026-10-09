@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router';
 import NavBar from '@/components/NavBar.vue';
 import FooterComp from './components/FooterComp.vue';
+import SeoManager from "@/components/SeoManager.vue";
 
 </script>
 
@@ -9,6 +10,7 @@ import FooterComp from './components/FooterComp.vue';
   <NavBar />
 
   <main>
+    <SeoManager />
     <RouterView/>
   </main>
 
