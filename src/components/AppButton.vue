@@ -5,7 +5,7 @@ import { computed } from "vue";
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
   textColor?: string;
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "tertiary" | "disabled";
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -30,6 +30,9 @@ const btn = computed(() => {
     case "tertiary":
       return "bg-white border-b-[#D3D3D3]";
 
+    case "disabled":
+      return "bg-slate-500 border-b-slate-900";  
+
     default:
       return "bg-app-green border-b-[#0d4c18]";
   }
@@ -40,6 +43,7 @@ const btn = computed(() => {
 <template>
   <Primitive
     as="button"
+    :disabled="variant === 'disabled'"
     :type="type"
     :class="[btn,
       `flex items-center justify-center h-15.25 px-4 w-70 rounded-[20px] cursor-pointer

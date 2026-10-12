@@ -71,8 +71,11 @@ const premiumOffering = [
 ]
 
 const familyOffering = [
-    "Everything in premium",
-    "Up to 2 child profiles included"
+    "Everything in Premium",
+    "Up to 2 child learning profiles",
+    "Fun, age-appropriate lessons for kids",
+    "Individual progress tracking for each child",
+    "A shared journey to reconnect with your heritage"
 ]
 
 type PlanType = {
@@ -101,8 +104,8 @@ const plans = computed<PlanType[]>(() => [
         id: 2,
         price: `${price.value} ${ billingPeriod.value }`,
         title: "Premium Plan",
-        description: `Unlock the complete TalkSharp experience 
-        with full lesson access, Sauti AI, and learning profiles for your children.`,
+        description: `Take your language learning further with full lesson
+      access, personalized progress tracking, and Sauti AI guidance.`,
         offering: premiumOffering,
         trigger: ()=>checkout("premium"),
         buttonTitle: "Get Started",
@@ -112,11 +115,11 @@ const plans = computed<PlanType[]>(() => [
         id: 3,
         price: `${priceFamily.value} ${ billingPeriod.value }`,
         title: "Family Plan",
-        description: `Unlock the complete TalkSharp experience 
-        with full lesson access, Sauti AI, and learning profiles for your children.`,
+        description: `Bring language learning home with full Premium access
+      for you and a fun, engaging learning experience for up to two children.`,
         offering: familyOffering,
         trigger: ()=>checkout("family"),
-        buttonTitle: "Get Started",
+        buttonTitle: "Coming Soon...",
         save: "£15.89"
     }
 ]);
@@ -143,7 +146,41 @@ const plans = computed<PlanType[]>(() => [
             
         </div>
 
-        <div class="sm:mx-10 mx-5 absolute top-40 sm:top-60 grid grid-row-3 lg:grid-cols-3 mt-4 items-center justify-center gap-2">
+        <div class="flex items-center justify-center gap-3 mt-10">
+            <span
+                class="transition-colors duration-200"
+                :class="!billedYearly ? 'text-app-yellow font-semibold' : 'text-white/75 font-medium'"
+            >
+                Monthly
+            </span>
+
+            <button
+                type="button"
+                role="switch"
+                :aria-checked="billedYearly"
+                aria-label="Yearly billing"
+                @click="billedYearly = !billedYearly"
+                class="relative w-12 h-7 rounded-full transition-colors cursor-pointer"
+                :class="billedYearly ? 'bg-green-500' : 'bg-gray-300'"
+            >
+                <span
+                class="absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-transform"
+                :class="billedYearly ? 'translate-x-5' : ''"
+                />
+            </button>
+
+            <span
+                class="transition-colors duration-200"
+                :class="billedYearly ? 'text-app-yellow font-semibold' : 'text-white/75 font-medium'"
+            >
+                Yearly
+            </span>
+
+            <span class="text-xs text-green-700 bg-green-50 rounded-full px-3 py-1">
+                Save up to 17%
+            </span>
+        </div>
+        <div class="sm:mx-10 mx-5 absolute top-40 sm:top-60 grid grid-row-3 lg:grid-cols-3 items-center justify-center gap-2">
             <div 
                 v-for="plan in plans"
                 :key="plan.id"
@@ -158,42 +195,8 @@ const plans = computed<PlanType[]>(() => [
                     <p class="text-xl sm:text-2xl font-lucky">
                         {{ plan.price }}
                     </p>
-                    <div v-if="plan.id > 1"
-                        class="flex items-center justify-between pt-5"
-                    >
-                        <span class="font-medium text-gray-700">
-                            {{ billedYearly ? 'Billed Yearly' : 'Billed Monthly' }}
-                        </span>
-
-                        <button
-                            type="button"
-                            role="switch"
-                            :aria-checked="billedYearly"
-                            @click="billedYearly = !billedYearly"
-                            class="relative h-7 w-12 rounded-full transition-colors"
-                            :class="
-                                billedYearly
-                                ? 'bg-green-600'
-                                : 'bg-gray-300'
-                            "
-                        >
-                            <span
-                                class="absolute top-1 h-5 w-5 rounded-full bg-white shadow transition-all"
-                                :class="
-                                billedYearly
-                                    ? 'left-6'
-                                    : 'left-1'
-                                "
-                            />
-                        </button>
-                    </div>
-                    <div
-                        v-if="billedYearly && plan.id > 1"
-                        class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-sm font-medium text-green-700"
-                    >
-                        Save {{ plan.save }} with yearly billing
-                    </div>
-                    <p class="font-bold text-xl sm:text-2xl mt-6 mb-2">
+                    <hr class="mt-6 text-slate-200"/>
+                    <p class="font-bold text-xl sm:text-2xl mt-4 mb-2">
                         {{ plan.title }}
                     </p>
                     <p class="text-[12px] text-grey mb-4">
@@ -219,6 +222,7 @@ const plans = computed<PlanType[]>(() => [
                 </div>
                 <AppButton class="mt-6 w-full"
                     @click="plan.trigger"
+                    :variant="plan.id === 3 ? 'disabled' : 'primary'"
                 >
                     {{ plan.buttonTitle }}
                 </AppButton> 
