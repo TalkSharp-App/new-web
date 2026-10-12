@@ -150,7 +150,7 @@ const plans = computed<PlanType[]>(() => [
                 :class="[
                     `p-6 w-full rounded-[34.52px] 
                     border-[2.87px] h-auto `,
-                    plan.id === 1 ? 'bg-white ' : 'bg-app-yellow'
+                    plan.id === 2 ? 'bg-app-yellow ' : 'bg-white'
                 ]"
                 
             >
