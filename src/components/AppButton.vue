@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Primitive } from "reka-ui";
+import { computed } from "vue";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
   textColor?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -13,9 +14,27 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: "primary"
 });
 
-const btn = props.variant === "primary"
-              ? 'bg-app-green border-b-[#0d4c18]'
-              : 'bg-app-yellow border-b-[#DAA800]'
+// const btn = props.variant === "primary"
+//               ? 'bg-app-green border-b-[#0d4c18]'
+//               : props.variant === "secondary"
+//                 ? 'bg-app-yellow border-b-[#DAA800]'
+//                 : 'bg-white border-b-[#D3D3D3]'
+const btn = computed(() => {
+  switch (props.variant) {
+    case "primary":
+      return "bg-app-green border-b-[#0d4c18]";
+
+    case "secondary":
+      return "bg-app-yellow border-b-[#DAA800]";
+
+    case "tertiary":
+      return "bg-white border-b-[#D3D3D3]";
+
+    default:
+      return "bg-app-green border-b-[#0d4c18]";
+  }
+});
+
 </script>
 
 <template>

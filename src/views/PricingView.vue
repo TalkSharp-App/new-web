@@ -9,27 +9,37 @@ import { computed, ref } from "vue";
 const billedYearly = ref(false);
 
 const price = computed(() => {
-  return billedYearly.value ? "£79.99" : "£7.99";
+  return billedYearly.value ? "£60.99" : "£5.99";
 });
 
 const billingPeriod = computed(() => {
   return billedYearly.value ? "/ yearly" : "/ monthly";
 });
 
+const priceFamily = computed(() => {
+  return billedYearly.value ? "£79.99" : "£7.99";
+});
+
 const goToDemo = () => {
   window.location.href = "https://app.talksharp.co";
 };
 
-const checkout = () => {
-    const plan = billedYearly.value ? "yearly" : "monthly";
+const checkout = (type: "family" | "premium") => {
+    const plan = billedYearly.value ? `yearly` : `monthly`;
 
-    document.cookie = `
-        plan=${plan}; 
-        domain=.talksharp.co;
-        path=/; Secure; 
-        SameSite=Lax`;
-    window.location.href = `https://app.talksharp.co/checkout-start?plan=${plan}`;
+    // document.cookie = `
+    //     plan=${plan}; 
+    //     domain=.talksharp.co;
+    //     path=/; Secure; 
+    //     SameSite=Lax`;
+    // window.location.href = `https://app.talksharp.co/checkout-start?plan=${plan}&type=${type}`;
     // window.location.href = `http://localhost:3000/checkout-start?plan=${plan}`
+    const url = new URL("https://app.talksharp.co/checkout-start");
+
+    url.searchParams.set("plan", plan);
+    url.searchParams.set("type", type);
+
+    window.location.href = url.toString();
 };
 
 const ImageLang = [
@@ -57,8 +67,12 @@ const premiumOffering = [
     "Full lesson and module access",
     "Sauti AI for learning. Get real time feedback on your pronunciation.",
     "Progress tracking & streaks",
-    "Up to 2 child profiles included",
     "Real-life conversation scenarios"
+]
+
+const familyOffering = [
+    "Everything in premium",
+    "Up to 2 child profiles included"
 ]
 
 type PlanType = {
@@ -69,13 +83,14 @@ type PlanType = {
     offering: string[];
     trigger: ()=>void;
     buttonTitle: string;
+    save?: string;
 }
 
 const plans = computed<PlanType[]>(() => [
     {
         id: 1,
         price: "£0",
-        title: "Free",
+        title: "Free Plan",
         description: `Start your language journey with essential lessons 
         and explore TalkSharp at your own pace.`,
         offering: freeOffering,
@@ -85,18 +100,30 @@ const plans = computed<PlanType[]>(() => [
     {
         id: 2,
         price: `${price.value} ${ billingPeriod.value }`,
-        title: "Premium",
+        title: "Premium Plan",
         description: `Unlock the complete TalkSharp experience 
         with full lesson access, Sauti AI, and learning profiles for your children.`,
         offering: premiumOffering,
-        trigger: ()=>checkout(),
-        buttonTitle: "Get Started"
+        trigger: ()=>checkout("premium"),
+        buttonTitle: "Get Started",
+        save: "£10.89"
+    },
+    {
+        id: 3,
+        price: `${priceFamily.value} ${ billingPeriod.value }`,
+        title: "Family Plan",
+        description: `Unlock the complete TalkSharp experience 
+        with full lesson access, Sauti AI, and learning profiles for your children.`,
+        offering: familyOffering,
+        trigger: ()=>checkout("family"),
+        buttonTitle: "Get Started",
+        save: "£15.89"
     }
 ]);
 
 </script>
 <template>
-    <div class="bg-app-green w-full relative h-160 lg:mb-80 md:mb-200 mb-170">
+    <div class="bg-app-green w-full relative h-160 lg:mb-50 sm:mb-240 mb-230">
         <img
             v-for="img in ImageLang"
             :key="img.id"
@@ -115,22 +142,23 @@ const plans = computed<PlanType[]>(() => [
             </h1>
             
         </div>
-        <div class="sm:mx-10 mx-5 absolute top-40 sm:top-60 lg:mx-20 grid grid-row-2 lg:grid-cols-2 mt-4 items-center justify-center gap-8">
+
+        <div class="sm:mx-10 mx-5 absolute top-40 sm:top-60 grid grid-row-3 lg:grid-cols-3 mt-4 items-center justify-center gap-2">
             <div 
                 v-for="plan in plans"
                 :key="plan.id"
                 :class="[
-                    `p-8 sm:p-12 w-full rounded-[34.52px] 
+                    `p-6 w-full rounded-[34.52px] 
                     border-[2.87px] h-auto `,
                     plan.id === 1 ? 'bg-white ' : 'bg-app-yellow'
                 ]"
                 
             >
                 <div class="w-full flex flex-col">
-                    <p class="text-3xl sm:text-4xl font-lucky">
+                    <p class="text-xl sm:text-2xl font-lucky">
                         {{ plan.price }}
                     </p>
-                    <div v-if="plan.id === 2"
+                    <div v-if="plan.id > 1"
                         class="flex items-center justify-between pt-5"
                     >
                         <span class="font-medium text-gray-700">
@@ -160,31 +188,31 @@ const plans = computed<PlanType[]>(() => [
                         </button>
                     </div>
                     <div
-                        v-if="billedYearly && plan.id === 2"
+                        v-if="billedYearly && plan.id > 1"
                         class="mt-5 rounded-lg bg-green-50 px-4 py-3 text-sm font-medium text-green-700"
                     >
-                        Save £15.89 with yearly billing
+                        Save {{ plan.save }} with yearly billing
                     </div>
-                    <p class="font-bold text-2xl sm:text-3xl mt-6 mb-2">
+                    <p class="font-bold text-xl sm:text-2xl mt-6 mb-2">
                         {{ plan.title }}
                     </p>
-                    <p class="text-[14px] sm:text-[16px] text-grey mb-4">
+                    <p class="text-[12px] text-grey mb-4">
                         {{ plan.description }}
                     </p>
                 </div>
                 <div class="flex flex-col gap-2"> 
                     <div
-                        class="flex sm:gap-4 gap-2"
+                        class="flex gap-2"
                         v-for="value in plan.offering"
                         :key="value"
                     >
                         <img
                             :src="SealCheck"
                             alt="seal check"
-                            class="w-6 h-6"
+                            class="w-4 h-4 sm:mt-1"
                             
                         /> 
-                        <p class="text-base sm:text-lg font-semibold">
+                        <p class="text-[12px] sm:text-[14px] font-semibold">
                             {{ value }}
                         </p>   
                     </div> 

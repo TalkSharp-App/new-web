@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import QuoteSvg from '@/assets/quote-up.svg';
-import SlideImage from '@/assets/fam1.png';
+import SlideImage from '@/assets/SlideImage.svg';
+import SlideImage2 from '@/assets/SlideImage2.svg';
+import SlideImage3 from '@/assets/SlideImage3.svg';
 import QuestImage from '@/assets/Question.png';
 import LearnImage from '@/assets/kidslearn.png'
 import AppButton from '@/components/AppButton.vue';
@@ -18,17 +20,20 @@ const slides = [
   {
     id: 1,
     image: SlideImage,
-    caption: "TalkSharp teaches your kids through interactive lessons, games on how have confident conversation with their parents.",
+    caption: `TalkSharp helps children have confident conversations 
+    with their parents through interactive lessons.`,
   },
   {
     id: 2,
-    image: SlideImage,
-    caption: "Playful songs and traditional folktales crafted to keep children connected to their cultural roots.",
+    image: SlideImage2,
+    caption: `Talksharp teaches your kids about your culture through
+    interactive culture lessons.`,
   },
   {
     id: 3,
-    image: SlideImage,
-    caption: "Daily immersion stories designed to build language confidence step-by-step.",
+    image: SlideImage3,
+    caption: `Talksharp teaches your kids how to greet,
+    through interactive lessons and games.`,
   },
 ];
 
@@ -112,9 +117,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="pt-28 md:pt-44 pb-16 md:pb-24 px-4 sm:px-6 w-full mx-auto">
+  <section class="pt-28 md:pt-44 pb-12 px-4 sm:px-6 w-full mx-auto">
     <div class="text-center my-14 md:my-28 max-w-4xl mx-auto">
-      <div class="relative inline-block px-8 py-6 md:px-16 md:py-10">
+      <div class="relative inline-block px-8 py-6 md:px-16">
         <img
           :src="QuoteSvg"
           alt=""
@@ -196,33 +201,53 @@ onUnmounted(() => {
       <h2 class="font-lucky text-2xl sm:text-4xl md:text-[52px] text-center leading-tight sm:leading-16 py-3">
         The path changes as the <br class="hidden sm:block" /> child grows.
       </h2>
-      <p class="text-[#667085] text-sm sm:text-base md:text-lg text-center max-w-3xl leading-relaxed">Younger children begin with big visuals, simple choices, and lots of listening. Older children move into richer stories, more independence, and more conversational confidence.</p>
+      <p class="text-[#667085] text-sm sm:text-base md:text-lg text-center max-w-3xl leading-relaxed">
+        Younger children begin with big visuals, simple 
+        choices, and lots of listening. Older children move 
+        into richer stories, more independence, and more conversational confidence.
+      </p>
 
       <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 max-w-6xl mx-auto mt-8 md:mt-12 mb-6">
         <div class="flex flex-col gap-2 md:gap-6 bg-[#FFF1F2] rounded-4xl p-6 sm:p-8">
           <p class="bg-white border border-border py-1.5 px-3.5 rounded-2xl w-fit">Ages 4-7</p>
           <h3 class="font-lucky text-lg md:text-2xl">Little ears, big curiosity.</h3>
-          <p class="text-sm md:text-base pb-3 text-grey font-light leading-relaxed">Matching games, animal names, family words, and short prompts build familiarity, without making learning feel like school.</p>
+          <p class="text-sm md:text-base pb-3 text-grey font-light leading-relaxed">
+            Matching games, animal names, family words, 
+            and short prompts build familiarity, without 
+            making learning feel like school.
+          </p>
         </div>
         <div class="flex flex-col gap-2 md:gap-6 bg-[#EFF6EF] rounded-4xl p-6 sm:p-8">
           <p class="bg-white border border-border py-1.5 px-3.5 rounded-2xl w-fit">Ages 8-11</p>
           <h3 class="font-lucky text-lg md:text-2xl">More language, more independence.</h3>
-          <p class="text-sm md:text-base pb-3 text-grey font-light leading-relaxed">Children begin connecting phrases to stories, culture quizzes, and short speaking tasks that encourage them to try out full lines.</p>
+          <p class="text-sm md:text-base pb-3 text-grey font-light leading-relaxed">
+            Children begin connecting phrases to stories, 
+            culture quizzes, and short speaking tasks that 
+            encourage them to try out full lines.
+          </p>
         </div>
         <div class="flex flex-col gap-2 md:gap-6 bg-[#FAF9FF] rounded-4xl p-6 sm:p-8">
           <p class="bg-white border border-border py-1.5 px-3.5 rounded-2xl w-fit">Ages 12-14</p>
           <h3 class="font-lucky text-lg md:text-2xl">Deeper stories, bigger confidence.</h3>
-          <p class="text-sm md:text-base pb-3 text-grey font-light leading-relaxed">Older children can carry more context, explore cultural meaning, and practice phrases they may want to use with relatives, friends, or family gatherings.</p>
+          <p class="text-sm md:text-base pb-3 text-grey font-light leading-relaxed">
+            Older children can carry more context, explore cultural meaning, and 
+            practice phrases they may want to use with relatives, friends, 
+            or family gatherings.
+          </p>
         </div>
       </div>
     </div>
 
 
-    <div class="mt-20 mb-10 md:mt-28 md:mb-14 flex flex-col justify-center items-center max-w-4xl mx-auto">
+    <div class="mt-20 flex flex-col justify-center items-center max-w-4xl mx-auto">
       <h2 class="font-lucky text-2xl sm:text-4xl md:text-[52px] text-center leading-tight sm:leading-16 py-2 sm:py-5">
         Built for  your kids <br class="hidden sm:block" /> for better learning
       </h2>
-      <p class="font-light text-[#667085] text-sm md:text-lg text-center max-w-80 md:max-w-3xl">Instead of passive viewing, children play an active role - talking, mimicking, laughing, and building actual cognitive connections to Yoruba, Igbo, Swahili, and Twi.</p>
+      <p class="font-light text-[#667085] text-sm md:text-lg text-center max-w-80 md:max-w-3xl">
+        Instead of passive viewing, children play an active role - talking, 
+        mimicking, laughing, and building actual cognitive connections to Yoruba, 
+        Igbo, Swahili, and Twi.
+      </p>
 
       <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12 my-12">
         <img
@@ -233,13 +258,18 @@ onUnmounted(() => {
         />
         <div class="flex flex-col justify-center">
           <h3 class="font-lucky text-3xl">Play by learning</h3>
-          <p class="text-grey text-sm md:text-lg">Your kids gets preferential games based on there age for there effective learning.</p>
+          <p class="text-grey text-sm md:text-lg">
+            Your kids gets preferential games based 
+            on there age for there effective learning.
+          </p>
         </div>
       </div>
       <div class="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
         <div class="flex flex-col justify-center">
           <h3 class="font-lucky text-3xl">Conversation Learning</h3>
-          <p class="text-grey text-sm md:text-lg">Your kids learns by one to one conversation, with clear visuals. </p>
+          <p class="text-grey text-sm md:text-lg">
+            Your kids learns by one to one conversation, with clear visuals. 
+          </p>
         </div>
         <img
           :src="LearnImage"

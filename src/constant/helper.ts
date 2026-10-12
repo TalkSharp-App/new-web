@@ -205,10 +205,70 @@ type PhraseCategory = {
   phrases: Phrase[];
 };
 
+export interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+export const adultFaqs: FaqItem[] = [
+  {
+    id: 1,
+    question: 'Is TalkSharp suitable for adult beginners?',
+    answer:
+      'Yes. TalkSharp starts with listening, matching, and simple repetition. These activities help you become familiar with the language and build confidence before moving on to more advanced practice.',
+  },
+  {
+    id: 2,
+    question: 'How can I track my learning progress?',
+    answer:
+      'You can view your recent activity, progress updates, and learning milestones. These help you stay involved, support your learning, and celebrate your progress.',
+  },
+  {
+    id: 3,
+    question: 'Can I learn more than one language?',
+    answer:
+      'Yes. You can explore multiple languages, whether you want to connect with your heritage, support everyday conversations, or encourage your curiosity.',
+  },
+  {
+    id: 4,
+    question: 'How can I fit language learning into a busy schedule?',
+    answer:
+      'Start with a short, regular practice session that fits your routine. Focus on one manageable goal at a time, and build consistency before increasing your practice time.',
+  },
+];
+
+export const kidsFaqs: FaqItem[] = [
+  {
+    id: 1,
+    question: 'Is TalkSharp Kids suitable for complete beginners?',
+    answer:
+      'Yes. Children start with listening, matching, and simple repetition. These activities help them become familiar with the language and build confidence before moving on to more advanced practice.',
+  },
+  {
+    id: 2,
+    question: 'How can I follow my child’s learning progress?',
+    answer:
+      'You can view your child’s recent activity, progress updates, and learning milestones. These help you stay involved, support their learning, and celebrate their progress.',
+  },
+  {
+    id: 3,
+    question: 'Can my child learn more than one language?',
+    answer:
+      'Yes. Your child can explore multiple languages, whether you want to connect them with your family’s heritage, support everyday conversations, or encourage their curiosity.',
+  },
+  {
+    id: 4,
+    question: 'Can I manage my child’s screen time?',
+    answer:
+      'Yes. You can manage your child’s screen time through the TalkSharp app for adults.',
+  },
+];
+
 export const phraseCategories: PhraseCategory[] = [
   {
     id: "greeting_elders",
-    label: "Greeting Elders",
+    label: "Greeting",
     phrases: [
       {
         id: "greeting-1",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import AppButton from '@/components/AppButton.vue';
+import AppButton from '@/components/AppButton.vue';
 import { ref } from 'vue';
 import WaitlistModal from '@/components/WaitList.vue';
 
@@ -13,7 +13,7 @@ const handleWaitlistSubmit = (email: string) => {
 <template>
   <section class="relative flex flex-col justify-center items-center gap-6 md:gap-8 pt-10 md:pt-12 mt-8 px-4 sm:px-8 text-center max-w-235 mx-auto">
     <div class="relative z-10 flex flex-col items-center w-full">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white font-lucky m-0 sm:leading-tight">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl text-white font-lucky m-0 sm:leading-tight">
         PASS DOWN your MOTHER TONGUE to<span class="text-app-yellow pl-2 sm:pl-3">your kids.</span>
       </h1>
 
@@ -22,10 +22,15 @@ const handleWaitlistSubmit = (email: string) => {
       </p>
     </div>
 
-    <div class="mt-24">
-      <!-- <AppButton @click="isWaitlistOpen = true" class="h-11 px-10 bg-white" text-color="black">
+    <div class="mt-6 mb-36">
+      <AppButton 
+        @click="isWaitlistOpen = true" 
+        class="h-11 px-10" 
+        textColor="black"
+        variant="tertiary"
+      >
         Join Waitlist
-      </AppButton> -->
+      </AppButton>
       <WaitlistModal
         :isOpen="isWaitlistOpen"
         @close="isWaitlistOpen = false"

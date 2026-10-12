@@ -3,7 +3,6 @@ import PageLayout from '@/components/PageLayout.vue';
 import AdultHero from './kids/AdultHero.vue';
 import LanguageCard from '@/components/LanguageCard.vue';
 import Couple from "@/assets/couple.png"
-import Professional from "@/assets/professional.png"
 import Parent from "@/assets/parent.png"
 import Convo from "@/assets/convo.png"
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -19,6 +18,8 @@ import AppStoreButtons from '@/components/AppStoreButtons.vue';
 import BottomSection from '@/components/BottomSection.vue';
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { ref } from 'vue';
+import FrequentlyAsked from './kids/FrequentlyAsked.vue';
+import { adultFaqs } from '@/constant/helper.ts';
 
 const modules = [Autoplay, Pagination];
 const testimonialContainer = ref<HTMLElement | null>(null);
@@ -49,21 +50,21 @@ const handleGetStarted = () => {
   window.location.href = "https://app.talksharp.co";
 };
 
+const handleTryFree = () => {
+  window.location.href = "https://app.talksharp.co/guest";
+};
+
 const slides = [
   {
     text: "Have a clear conversation with your partner without stammering.",
     image: Couple
   },
   {
-    text: "",
-    image: Professional
-  },
-  {
-    text: "",
+    text: "Speak with your mother or father with confidence.",
     image: Parent
   },
   {
-    text: "",
+    text: "Price commodities with there language and win a lower price.",
     image: Convo
   }
 ]
@@ -71,21 +72,22 @@ const slides = [
 const items = [
     {
         title: "Native speaker audio",
-        description: "Every word, every phrase, every tone spoken by real native speakers. Because in Yoruba, tone isn't accent. It's meaning.",
+        description: "Every word, phrase and tone is recorded by native speakers. In tonal languages like Yoruba and Igbo, tone isn’t just an accent, it carries its own meaning.",
         invert: false,
         image: Frame1
     },
     {
         title: "Cultural context",
-        description: `Words without context are just sounds. TalkSharp teaches you what to say,
-        who to say it to, and why it matters — through proverbs, traditions, and the stories your culture is
+        description: `Words without context are just sounds. TalkSharp teaches 
+        you what to say, who to say it to, and why it matters through proverbs, 
+        traditions, and the stories your culture is 
         built on.`,
         invert: true,
         image: Frame2
     },
     {
         title: "Community",
-        description: "Learn alongside others. Track your progress, and stay motivated on your journey back to the language that was always yours.",
+        description: "Learn alongside family and friends. Track your progress, keep your streak, and find your way back to the language that was always yours.",
         invert: false,
         image: Frame3
     }
@@ -135,8 +137,8 @@ const testimonials = [
             </section>
 
             <div class="flex justify-center items-center flex-col sm:mt-4 mt-8">
-                <AppButton @click="handleGetStarted" class="px-12">
-                    Get Started
+                <AppButton @click="handleTryFree" class="px-12">
+                    Try a Free Lesson
                 </AppButton>
 
                 <span class="font-lucky text-[24px] sm:text-[48px] md:text-[42px] mt-20 mb-4 text-center leading-6">
@@ -180,12 +182,13 @@ const testimonials = [
             </Swiper>
 
             <section class="max-w-5xl pt-12 pb-4 px-4 sm:px-6 w-full mx-auto flex justify-center items-center flex-col">
-                <span class="font-lucky text-[24px] sm:text-[42px] sm:mt-12 sm:mb-4 text-center md:leading-8 sm:leading-12 leading-8">
-                    WE MADE AFRICAN language learning EASY
+                <span class="font-lucky text-[24px] sm:text-[42px] sm:mt-12 sm:mb-4 text-center sm:leading-12 leading-6">
+                    Learn the way your language <br class="sm:block hidden"/>
+                    is really spoken
                 </span>
                 <span class="text-grey text-[14px] sm:text-[18px] sm:mb-6 text-center!">
-                    TalkSharp helps you learn through real conversations,
-                    culture, tone, and community and not just random words.
+                    TalkSharp walks you through this journey with real conversations, cultural context, 
+                    total feedback, and a growing community.
                 </span>
 
                 <div
@@ -217,10 +220,10 @@ const testimonials = [
 
             <section class="sm:pt-12 pb-4 px-4 sm:px-6 w-full flex justify-center items-center flex-col">
                 <span class="font-lucky text-[24px] sm:text-[42px] mt-12 sm:mb-4">
-                    PEOPLE’S LOVE
+                     Stories from our learners
                 </span>
                 <span class="text-grey sm:text-[18px] mb-6 text-center! text-[14px]">
-                    From diaspora reconnecting with roots to kids surprising their grandparents.
+                    From adults reconnecting with their roots to children surprising their grandparents.
                 </span>
                 <div class="flex overflow-x-auto md:px-0 sm:hidden hide-scrollbar">
                     <div
@@ -314,15 +317,16 @@ const testimonials = [
 
             <section class="pt-12 sm:pb-4 w-full flex justify-center items-center flex-col bg-[#FFFAEA] mt-12">
                 <span class="text-center font-lucky text-[24px] sm:text-[42px] sm:leading-12 leading-6">
-                    <span class="text-[#FA534A]">Got kids?</span><br/>
+                    <span class="text-secondary">Got kids?</span><br/>
                     Let your kids learn your <br/>
                     culture and language.
                 </span>
 
                 <span class="text-[#333] text-[14px] sm:text-[18px] text-center sm:mt-4 max-w-4xl px-4">
-                    Children learn languages faster - especially when it feels like play.
-                    TalkSharp Kids uses games, songs, and culture quizzes to teach Twi, Igbo,
-                    Yoruba, and Hausa with a guide who cheers every win.
+                    Children learn languages faster" is a contested claim, and parents will look for safety signals.
+                    TalkSharp Kids (ages 5-12) teaches Yoruba through songs, games, and culture quizzes, 
+                    with a friendly guide who celebrates every win. 
+                    Igbo, Twi and Hausa are coming soon.
                 </span>
                 <AppButton class="px-12 my-8"
                      @click="$router.push('/kids')"
@@ -337,17 +341,19 @@ const testimonials = [
                 />
             </section>
 
-          <BottomSection>
-            <h2 class="font-lucky text-[28px] sm:text-[55px] text-white text-center sm:leading-16 leading-tight mb-4">
-              Your first<br class="hidden sm:block" /> hello is free.
-            </h2>
-            <p class="text-white/90 text-[14px] sm:text-[20px] text-center max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              Pick your language, say your first hello, and watch<br class="hidden sm:block" /> what it does to someone's face.
-            </p>
-            <div class="flex justify-center w-full z-10 mb-4">
-              <AppStoreButtons />
-            </div>
-          </BottomSection>
+            <FrequentlyAsked :faq="adultFaqs"/>
+
+            <BottomSection>
+                <h2 class="font-lucky text-[28px] sm:text-[55px] text-white text-center sm:leading-16 leading-tight mb-4">
+                    Your first<br class="hidden sm:block" /> hello is free.
+                </h2>
+                <p class="text-white/90 text-[14px] sm:text-[20px] text-center max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+                    Pick your language, say your first hello, and watch<br class="hidden sm:block" /> what it does to someone's face.
+                </p>
+                <div class="flex justify-center w-full z-10 mb-4">
+                <AppStoreButtons />
+                </div>
+            </BottomSection>
         </div>
     </PageLayout>
 </template>

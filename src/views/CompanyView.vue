@@ -152,7 +152,7 @@ I built TalkSharp to change that. We are making African heritage languages acc
             <div class="mt-20 bg-white sm:w-[90%] md:w-[80%] sm:h-140
                 rounded-[34.519px] border-[2.866px]
                 border-solid border-[#F0F0F0]
-                flex justify-between items-center sm:flex-row flex-col
+                flex justify-between items-start sm:flex-row flex-col
                 "
             >
                 <div class="w-full sm:w-[40%] h-full flex flex-col justify-start items-start">
@@ -162,11 +162,11 @@ I built TalkSharp to change that. We are making African heritage languages acc
                         </span>
                     </div>
 
-                    <div class="w-full sm:h-70 md:h-80 px-4 mt-6 flex justify-center">
+                    <div class="w-full sm:h-70 px-4 mt-6 flex justify-center">
                         <img
                             :src="CEO"
                             alt="talksharp ceo"
-                            class="h-full sm:w-full md:w-[80%] object-fill rounded-2xl"
+                            class="h-full sm:w-full md:w-[90%] object-fill rounded-2xl"
                         />
                     </div>
                     <div class="flex flex-col justify-center items-center w-full mt-2">
@@ -390,14 +390,52 @@ I built TalkSharp to change that. We are making African heritage languages acc
     </div>
 
     <div class="mt-20 mb-16 flex justify-center items-center flex-col">
-        <span class="text-[32px] sm:text-[40px] md:text-[56px] font-lucky text-center leading-10 sm:leading-12 md:leading-16">
+        <span class="text-[32px] sm:text-[40px] md:text-[46px] font-lucky text-center leading-10 sm:leading-12 md:leading-12">
             A transparent<br/> statement of intent.
         </span>
-        <img
-            :src="Letter"
-            alt="TalkSharp letter"
-            class="md:h-240 md:w-200 object-fill sm:h-160 sm:w-120"
-        />
+        <div
+            class="relative w-full max-w-200 mx-auto bg-no-repeat bg-top bg-size-[100%_100%] py-12 px-4 sm:py-12 sm:px-20"
+            :style="{ backgroundImage: `url(${Letter})` }"
+        >
+            <div class="relative z-10 flex flex-col items-start px-6 py-12 sm:px-12 sm:py-16 md:px-16 md:py-20">
+
+            <div class="w-40 h-12 flex justify-center items-center bg-app-yellow">
+                <span class="text-[20px] font-lucky mt-2">
+                    Dear Users,
+                </span>
+            </div>
+
+            <p class="font-semibold text-[16px] md:text-[18px] mt-6">
+                We are building toward a future where African languages are
+                learned with the same warmth, context, and belonging they carry
+                in real life.
+            </p>
+
+            <p class="font-semibold text-[16px] md:text-[18px] my-6">
+                We believe language recovery should feel human. We believe adults
+                deserve patient pathways back into their heritage. We believe children
+                deserve playful, culturally rich entry points that do not feel like
+                schoolwork. And we believe guidance should understand more than
+                accuracy - it should understand meaning.
+            </p>
+
+            <p class="font-semibold text-[16px] md:text-[18px]">
+                TalkSharp helps families and communities reconnect with their heritage
+                language, making it accessible, meaningful, and worth returning to.
+            </p>
+
+            <div class="flex flex-col mt-6">
+                <span class="font-semibold text-[16px] md:text-[18px]">
+                Yours Truly,
+                </span>
+
+                <span class="font-semibold text-[16px] md:text-[18px] text-[#9F9D9D]">
+                The TALKSHARP TEAM
+                </span>
+            </div>
+
+            </div>
+        </div>
 
         <AppButton class="font-semibold px-12"
             @click="goToDemo"
