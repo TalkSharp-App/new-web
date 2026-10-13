@@ -252,19 +252,19 @@ const testimonials = [
                     disableOnInteraction: false,
                 }"
                 :speed="600"
-                class="w-full"
+                class="w-full!"
             >
                 <SwiperSlide
                     v-for="(slide, index) in slides"
                     :key="index"
                 >
                     <div
-                        class="relative flex h-60 sm:h-140 w-full flex-col items-center justify-center p-8 text-center"
+                        class="relative flex h-60 sm:h-140 w-full overflow-hidden items-center justify-center text-center"
                     >
                         <img
                             :src="slide.image"
                             alt="slide image"
-                            class="absolute h-full w-full object-cover"
+                            class="absolute inset-0 h-full w-full object-cover"
                         />
 
                         <p class="absolute text-white sm:bottom-20 bottom-16">
