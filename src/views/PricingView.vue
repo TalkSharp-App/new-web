@@ -9,16 +9,16 @@ import { computed, ref } from "vue";
 const billedYearly = ref(false);
 
 const price = computed(() => {
-  return billedYearly.value ? "£60.99" : "£5.99";
+  return billedYearly.value ? "£79.99" : "£7.99";
 });
 
 const billingPeriod = computed(() => {
   return billedYearly.value ? "/ yearly" : "/ monthly";
 });
 
-const priceFamily = computed(() => {
-  return billedYearly.value ? "£79.99" : "£7.99";
-});
+// const priceFamily = computed(() => {
+//   return billedYearly.value ? "£119.99" : "£11.99";
+// });
 
 const goToDemo = () => {
   window.location.href = "https://app.talksharp.co";
@@ -113,7 +113,7 @@ const plans = computed<PlanType[]>(() => [
     },
     {
         id: 3,
-        price: `${priceFamily.value} ${ billingPeriod.value }`,
+        price: "Coming Soon",//`${priceFamily.value} ${ billingPeriod.value }`,
         title: "Family Plan",
         description: `Bring language learning home with full Premium access
       for you and a fun, engaging learning experience for up to two children.`,
@@ -126,7 +126,7 @@ const plans = computed<PlanType[]>(() => [
 
 </script>
 <template>
-    <div class="bg-app-green w-full relative h-160 lg:mb-50 sm:mb-240 mb-230">
+    <div class="bg-app-green w-full relative h-160 lg:mb-50 sm:mb-210 mb-210">
         <img
             v-for="img in ImageLang"
             :key="img.id"
@@ -146,7 +146,7 @@ const plans = computed<PlanType[]>(() => [
             
         </div>
 
-        <div class="flex items-center justify-center gap-3 mt-10">
+        <div class="flex items-center justify-center gap-3 mt-20">
             <span
                 class="transition-colors duration-200"
                 :class="!billedYearly ? 'text-app-yellow font-semibold' : 'text-white/75 font-medium'"
@@ -180,7 +180,7 @@ const plans = computed<PlanType[]>(() => [
                 Save up to 17%
             </span>
         </div>
-        <div class="sm:mx-10 mx-5 absolute top-40 sm:top-60 grid grid-row-3 lg:grid-cols-3 items-center justify-center gap-2">
+        <div class="sm:mx-10 mx-5 absolute top-65 sm:top-60 md:top-85 lg:top-75 grid grid-row-3 lg:grid-cols-3 items-center justify-center gap-2">
             <div 
                 v-for="plan in plans"
                 :key="plan.id"
@@ -220,7 +220,9 @@ const plans = computed<PlanType[]>(() => [
                         </p>   
                     </div> 
                 </div>
-                <AppButton class="mt-6 w-full"
+                <AppButton 
+                    v-if="plan.id !== 3"
+                    class="mt-6 w-full"
                     @click="plan.trigger"
                     :variant="plan.id === 3 ? 'disabled' : 'primary'"
                 >

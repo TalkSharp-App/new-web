@@ -14,12 +14,25 @@ import Frame1 from '@/assets/Frame1.svg';
 import Frame2 from '@/assets/Frame2.svg';
 import Frame3 from '@/assets/Frame3.svg';
 import KindsImg from '@/assets/kids.svg';
-import AppStoreButtons from '@/components/AppStoreButtons.vue';
 import BottomSection from '@/components/BottomSection.vue';
-import { ChevronLeft, ChevronRight } from "lucide-vue-next";
-import { ref } from 'vue';
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-vue-next";
+import { computed, ref } from 'vue';
 import FrequentlyAsked from './kids/FrequentlyAsked.vue';
 import { adultFaqs } from '@/constant/helper.ts';
+import { db } from '@/config/firebase.ts';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { 
+    SelectContent, SelectIcon, SelectItem, 
+    SelectItemText, SelectPortal, SelectRoot, 
+    SelectTrigger, SelectValue, 
+    SelectViewport 
+} from 'reka-ui';
+
+const languages = [
+    "Twi",
+    "Swahili",
+    "Hausa"
+];
 
 const modules = [Autoplay, Pagination];
 const testimonialContainer = ref<HTMLElement | null>(null);
@@ -52,6 +65,86 @@ const handleGetStarted = () => {
 
 const handleTryFree = () => {
   window.location.href = "https://app.talksharp.co/guest";
+};
+
+const email = ref('');
+const successMsg = ref('');
+const selectedLanguage = ref('');
+const customLanguage = ref("");
+const errorMsg = ref('');
+const isSubmitted = ref(false);
+const isLoading = ref(false);
+const isOpen = ref(false);
+
+const finalLanguage = computed(() => {
+  return selectedLanguage.value === "other"
+    ? customLanguage.value.trim()
+    : selectedLanguage.value;
+});
+
+let messageTimeout: ReturnType<typeof setTimeout> | null = null;
+const showMessage = (message: string, type: "error" | "success") => {
+  if (messageTimeout) clearTimeout(messageTimeout);
+
+  errorMsg.value = "";
+  successMsg.value = "";
+
+  const target = type === "error" ? errorMsg : successMsg;
+  target.value = message;
+
+  messageTimeout = setTimeout(() => {
+    target.value = "";
+    messageTimeout = null;
+  }, 4000);
+};
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const handleSubmit = async () => {
+    const normalizedEmail = email.value.trim().toLowerCase();
+
+    errorMsg.value = "";
+
+    if (!normalizedEmail) {
+        showMessage("Please enter your email address.", "error");
+        return;
+    }
+
+    if (!finalLanguage.value.trim()) {
+        showMessage("Please select or enter a language.", "error");
+        return;
+    }
+
+    if(!emailRegex.test(normalizedEmail)) {
+        showMessage("Please enter a valid email address.", "error");
+        return;
+    }
+
+    isLoading.value = true;
+
+    try {
+        const emailDocumentId = encodeURIComponent(normalizedEmail);
+        const waitlistRef = doc(
+            db,
+            "community",
+            emailDocumentId
+        );
+
+        await setDoc(waitlistRef, {
+            email: normalizedEmail,
+            language: finalLanguage.value.trim(),
+            createdAt: serverTimestamp(),
+        });
+
+        isSubmitted.value = true;
+        email.value = '';
+        selectedLanguage.value = '';
+        showMessage("Welcome to the community! We're glad you're here.", "success");
+    } catch (error) {
+        console.error("Waitlist subscription error:", error);
+        showMessage( "Something went wrong. Please try again.", "error");
+    } finally {
+        isLoading.value = false;
+    }
 };
 
 const slides = [
@@ -344,14 +437,97 @@ const testimonials = [
             <FrequentlyAsked :faq="adultFaqs"/>
 
             <BottomSection>
-                <h2 class="font-lucky text-[28px] sm:text-[55px] text-white text-center sm:leading-16 leading-tight mb-4">
-                    Your first<br class="hidden sm:block" /> hello is free.
+                <h2 class="font-lucky text-[28px] sm:text-[40px] text-white text-center sm:leading-12 leading-tight mb-4">
+                    Learn. Speak it. Pass it on. <br class="hidden sm:block" /> Supporting line
                 </h2>
-                <p class="text-white/90 text-[14px] sm:text-[20px] text-center max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-                    Pick your language, say your first hello, and watch<br class="hidden sm:block" /> what it does to someone's face.
+                <p class="text-white/90 text-[14px] sm:text-[20px] text-center max-w-xl mx-auto mb-8 sm:mb-10 leading-6">
+                    Join the TalkSharp community for early access, <br class="hidden sm:block" /> 
+                    free phrases and stories from the diaspora. <br class="hidden sm:block" /> 
+                    Starting with Yoruba and Igbo, with more on the way.
                 </p>
-                <div class="flex justify-center w-full z-10 mb-4">
-                <AppStoreButtons />
+                <div class="p-6 gap-4 rounded-2xl flex flex-col justify-center w-full z-10 bg-white md:max-w-lg">
+                    <div>
+                        <label for="waitlist-email" class="block text-xs font-semibold text-gray-700 mb-1 text-left">
+                            Email Address
+                        </label>
+                        <input
+                            id="waitlist-email"
+                            v-model="email"
+                            type="email"
+                            required
+                            placeholder="name@example.com"
+                            class="w-full rounded-xl border border-gray-300 p-3.5 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                        />
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <SelectRoot
+                            v-model="selectedLanguage"
+                            v-model:open="isOpen"
+                        >
+                            <SelectTrigger
+                                style="border: 1px solid #EBEBF0; padding: 12px; width: 100%; background: white; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;"
+                            >
+                                <SelectValue placeholder="Select a language" />
+
+                                <SelectIcon>
+                                    <ChevronDown :size="16" />
+                                </SelectIcon>
+                            </SelectTrigger>
+
+                            <SelectPortal>
+                                <SelectContent
+                                    position="popper"
+                                    side="bottom"
+                                    :side-offset="4"
+                                    class="z-9999 w-(--reka-select-trigger-width) rounded-xl border border-[#EBEBF0] bg-white shadow-lg"
+                                >
+                                    <SelectViewport class="w-full p-1">
+                                    <SelectItem
+                                        v-for="language in languages"
+                                        :key="language"
+                                        :value="language"
+                                        class="w-full cursor-pointer rounded-lg px-4 py-2 outline-none data-highlighted:bg-neutral-100"
+                                    >
+                                        <SelectItemText>{{ language }}</SelectItemText>
+                                    </SelectItem>
+
+                                    <SelectItem
+                                        value="other"
+                                        class="w-full cursor-pointer rounded-lg px-4 py-2 outline-none data-highlighted:bg-neutral-100"
+                                    >
+                                        <SelectItemText>Other (Specify)</SelectItemText>
+                                    </SelectItem>
+                                    </SelectViewport>
+                                </SelectContent>
+                            </SelectPortal>
+                        </SelectRoot>
+
+                        <input
+                            v-if="selectedLanguage === 'other'"
+                            v-model="customLanguage"
+                            type="text"
+                            placeholder="Enter your language"
+                            style="border: 1px solid #EBEBF0; padding: 12px; width: 100%; border-radius: 12px;"
+                        />
+                    </div>
+
+                    <AppButton
+                        class="w-full py-2"
+                        variant="secondary"
+                        @click="handleSubmit"
+                    >
+                        <span class="text-black">{{ isLoading ? 'Loading...' : 'Submit' }}</span>
+                    </AppButton>
+                    <div class="flex justify-center items-center">
+                        <span
+                            :class="[
+                                'text-center text-xs font-light mt-2',
+                                errorMsg && 'text-red-700',
+                                successMsg && 'text-app-green'
+                            ]"
+                        >{{ errorMsg || successMsg }}</span>
+                    </div>
                 </div>
             </BottomSection>
         </div>

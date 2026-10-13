@@ -33,7 +33,6 @@ const showError = (message: string) => {
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const handleSubmit = async () => {
-  console.log('did it get here')
   const normalizedEmail = email.value.trim().toLowerCase();
 
   errorMsg.value = "";
