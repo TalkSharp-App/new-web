@@ -2,9 +2,11 @@
 import { computed, ref } from "vue";
 import { Volume2, ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { phraseCategories, type Phrase } from "@/constant/helper";
+import SpeakingIndicator from "@/components/SpeakerIndicator.vue";
 
 const activeIndex = ref(0);
 const activeCategory = ref("greeting_elders");
+const isLoading = ref(false)
 
 const activePhrases = computed(() => {
   return (
@@ -76,10 +78,23 @@ const getCardPosition = (index: number) => {
   `;
 };
 
-const playAudio = (phrase: Phrase) => {
-  // Play your audio here
-  console.log(phrase)
+const playAudio = async (phrase: Phrase) => {
+  try {
+    isLoading.value = true;
+
+    const audio = new Audio(phrase.audio);
+
+    audio.onended = () => {
+      isLoading.value = false;
+    };
+
+    await audio.play();
+  } catch (error) {
+    console.error("Error playing audio:", error);
+    isLoading.value = false;
+  }
 };
+
 </script>
 
 <template>
@@ -180,7 +195,15 @@ const playAudio = (phrase: Phrase) => {
               "
               @click="playAudio(phrase)"
             >
-              <Volume2 :size="28" />
+              <SpeakingIndicator
+                v-if="isLoading"
+                color="#ffff"
+              />
+
+              <Volume2
+                v-else
+                :size="20"
+              />
             </button>
           </div>
         </div>

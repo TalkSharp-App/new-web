@@ -7,6 +7,15 @@ import IgbImg from '@/assets/igb.svg';
 import TwiImg from '@/assets/twi.svg';
 import PdImg from '@/assets/pd.svg';
 import HauImg from '@/assets/hau.svg';
+import IgboGoodMorning from "@/assets/audio/IgboGoodMorning.wav";
+import IgboHowAreYou from "@/assets/audio/IgboHowAreYou.wav";
+import IgboHowMuch from "@/assets/audio/IgboHowMuch.wav";
+import TwiGoodMorning from "@/assets/audio/TwiGoodMorning.wav";
+import TwiHowAreYou from "@/assets/audio/TwiHowAreYou.wav";
+import TwiHowMuch from "@/assets/audio/TwiHowMuch.wav";
+import YorubaGoodMorning from "@/assets/audio/YorubaGoodMorning.wav";
+import YorubaHowAreYou from "@/assets/audio/YorubaHowAreYou.wav";
+import YorubaHowMuch from "@/assets/audio/YorubaHowMuch.wav";
 
 export const Links = [
   {label: 'For Adult', to: "/" },
@@ -273,9 +282,9 @@ export const phraseCategories: PhraseCategory[] = [
       {
         id: "greeting-1",
         language: "Igbo",
-        phrase: "Kedu!",
-        translation: "Hello",
-        audio: "/audio/igbo/kedu.mp3",
+        phrase: "Ụtụtụ ọma",
+        translation: "Good Morning",
+        audio: IgboGoodMorning,
         color: "bg-[#FFD54F]",
       },
       {
@@ -283,7 +292,7 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Yoruba",
         phrase: "Ẹ káàárọ̀",
         translation: "Good morning",
-        audio: "/audio/yoruba/ekaaro.mp3",
+        audio: YorubaGoodMorning,
         color: "bg-[#A8D5B5]",
       },
       {
@@ -291,12 +300,12 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Twi",
         phrase: "Maakye",
         translation: "Good morning",
-        audio: "/audio/twi/maakye.mp3",
+        audio: TwiGoodMorning,
         color: "bg-[#FFD1D1]",
       },
     ],
   },
-
+  
   {
     id: "at_the_market",
     label: "At the Market",
@@ -306,7 +315,7 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Igbo",
         phrase: "Ego ole?",
         translation: "How much?",
-        audio: "/audio/igbo/ego-ole.mp3",
+        audio:IgboHowMuch,
         color: "bg-[#FFD54F]",
       },
       {
@@ -314,7 +323,7 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Yoruba",
         phrase: "Èló ni?",
         translation: "How much?",
-        audio: "/audio/yoruba/elo-ni.mp3",
+        audio: YorubaHowMuch,
         color: "bg-[#A8D5B5]",
       },
       {
@@ -322,7 +331,7 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Twi",
         phrase: "Ɛyɛ sɛn?",
         translation: "How much?",
-        audio: "/audio/twi/eye-sen.mp3",
+        audio: TwiHowMuch,
         color: "bg-[#FFD1D1]",
       },
     ],
@@ -337,7 +346,7 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Igbo",
         phrase: "Kedu ka ị mere?",
         translation: "How are you?",
-        audio: "/audio/igbo/how-are-you.mp3",
+        audio: IgboHowAreYou,
         color: "bg-[#FFD54F]",
       },
       {
@@ -345,15 +354,15 @@ export const phraseCategories: PhraseCategory[] = [
         language: "Yoruba",
         phrase: "Báwo ni?",
         translation: "How are you?",
-        audio: "/audio/yoruba/how-are-you.mp3",
+        audio: YorubaHowAreYou,
         color: "bg-[#A8D5B5]",
       },
       {
         id: "friends-3",
         language: "Twi",
-        phrase: "Wo ho te sɛn?",
+        phrase: "Ete sԑn?",
         translation: "How are you?",
-        audio: "/audio/twi/how-are-you.mp3",
+        audio: TwiHowAreYou,
         color: "bg-[#FFD1D1]",
       },
     ],
