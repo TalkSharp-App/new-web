@@ -29,9 +29,8 @@ import {
 } from 'reka-ui';
 
 const languages = [
-    "Twi",
-    "Swahili",
-    "Hausa"
+    "Yoruba",
+    "Igbo"
 ];
 
 const modules = [Autoplay, Pagination];
@@ -188,19 +187,19 @@ const items = [
 
 const testimonials = [
     {
-        description: "I called my grandmother for the first time in Igbo. She cried. I cried. TalkSharp made it happen in 3 months.",
+        description: "I finally feel confident speaking Yoruba with my grandma. She cried the first time I greeted her properly.",
         name: "Adaeze O.",
         location: "London, UK",
         bg: "#FFF6D6"
     },
     {
-        description: "My 7-year-old now greets his Twi-speaking teacher every morning. His confidence has completely transformed.",
+        description: "My husband's family is Ghanaian. The first time I said 'Mema wo akye' to his mum, her face completely changed.",
         name: "Kwame M.",
         location: "Toronto, Canada",
         bg: "#F0FFF4"
     },
     {
-        description: 'I travel to Lagos for work and I can finally hold real conversations beyond "fine and you." Yoruba changed everything.',
+        description: "My husband's family is Ghanaian. The first time I said 'Mema wo akye' to his mum, her face completely changed.",
         name: "Tunde A.",
         location: "Houston, USA",
         bg: "#F5F3FF"
