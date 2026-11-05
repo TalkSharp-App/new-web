@@ -437,7 +437,7 @@ const testimonials = [
 
             <BottomSection>
                 <h2 class="font-lucky text-[28px] sm:text-[40px] text-white text-center sm:leading-12 leading-tight mb-4">
-                    Learn. Speak it. Pass it on. <br class="hidden sm:block" /> Supporting line
+                    Learn. Speak it. <br/> Pass it on
                 </h2>
                 <p class="text-white/90 text-[14px] sm:text-[20px] text-center max-w-xl mx-auto mb-8 sm:mb-10 leading-6">
                     Join the TalkSharp community for early access, <br class="hidden sm:block" /> 

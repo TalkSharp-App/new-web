@@ -5,6 +5,8 @@ import { Menu, X } from "lucide-vue-next";
 import Logo from "@/assets/logo-white.svg";
 import AppButton from './AppButton.vue';
 import { Links } from '@/constant/helper';
+import { watch } from 'vue';
+import { onUnmounted } from 'vue';
 
 const open = ref(false);
 
@@ -19,6 +21,14 @@ const closeMenu = () => {
 const goToDemo = () => {
   window.location.href = "https://app.talksharp.co/guest";
 };
+
+watch(open, (isOpen) => {
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+onUnmounted(() => {
+  document.body.style.overflow = '';
+});
 </script>
 
 <template>
@@ -76,43 +86,47 @@ const goToDemo = () => {
       </div>
     </div>
 
-    <div
+    <!-- <div
       class="w-full max-w-md overflow-hidden transition-all duration-300 ease-in-out md:hidden"
-      :class="open ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0 pointer-events-none'"
+      :class="open ? 'bg-app-green h-screen opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0 pointer-events-none'"
+    > -->
+    <div
+      class="pt-12 px-5 fixed inset-x-0 top-20 z-50 w-full overflow-hidden transition-all duration-300 ease-in-out md:hidden"
+      :class="
+        open
+          ? 'bg-app-green h-[calc(100dvh-80px)] opacity-100'
+          : 'h-0 opacity-0 pointer-events-none'
+      "
     >
-      <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 flex flex-col gap-5">
-        <ul class="flex flex-col gap-4">
-          <li v-for="link in Links" :key="link.to">
-            <RouterLink
-              :to="link.to"
-              custom
-              v-slot="{ isActive, navigate, href }"
+      <ul class="flex flex-col gap-4 mb-12">
+        <li v-for="link in Links" :key="link.to" class="pb-2">
+          <RouterLink
+            :to="link.to"
+            custom
+            v-slot="{ isActive, navigate, href }"
+          >
+            <a
+              :href="href"
+              @click="(e) => { navigate(e); closeMenu(); }"
+              :class="[
+                'text-lg font-bold block py-1 transition-colors cursor-pointer',
+                isActive ? 'text-app-yellow' : 'text-white'
+              ]"
             >
-              <a
-                :href="href"
-                @click="(e) => { navigate(e); closeMenu(); }"
-                :class="[
-                  'text-lg font-medium block py-1 transition-colors cursor-pointer',
-                  isActive ? 'text-app-green font-semibold' : 'text-[#4E4E4E] hover:text-black'
-                ]"
-              >
-                {{ link.label }}
-              </a>
-            </RouterLink>
-          </li>
-        </ul>
+              {{ link.label }}
+            </a>
+          </RouterLink>
+        </li>
+      </ul>
 
-        <hr class="border-gray-100 my-1" />
-
-        <AppButton
-          class="font-semibold"
-          textColor="text-black"
-          @click="goToDemo"
-          variant="secondary"
-        >
-          Quick Demo
-        </AppButton>
-      </div>
+      <AppButton
+        class="font-semibold w-full"
+        textColor="text-black"
+        @click="goToDemo"
+        variant="secondary"
+      >
+        Quick Demo
+      </AppButton>
     </div>
   </header>
 </template>
